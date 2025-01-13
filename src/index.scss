@@ -1,0 +1,46 @@
+:root{
+  font-family: Inter,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--color-text);
+  background-color: var(--color-background);
+
+  --max-width: 1600px;
+
+  --color-primary: #88eead;
+  --color-secondary: #167497;
+  --color-accent: #429be4;
+  --color-text: #e6fbee;
+  --color-bg:#020f07;
+
+  --color-neutral-1: #c4c2ce;
+  --color-neutral-2: #7c818f;
+  --color-neutral-3: #565565;
+
+}
+
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+
+  &:focus{
+    outline:none;
+  }
+}
+
+button{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  background-color: var(--color-text);
+  color: var(--color-text);
+  border: 1px slid var(--color-text);
+}
+
+a{
+  text-decoration:none;
+}
