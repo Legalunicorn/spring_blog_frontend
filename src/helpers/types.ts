@@ -1,6 +1,4 @@
-
-// export type User = {
-//     id:number,
-//     token:string,
-//     username: string|null
-// }|null
+export interface User{
+    username:string,
+    token:string
+}

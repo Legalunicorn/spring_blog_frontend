@@ -1,13 +1,14 @@
 
 import { createBrowserRouter } from "react-router"
 import Register from "../../pages/auth/Register";
+import Login from "../../pages/auth/Login";
 const router = createBrowserRouter([
     {
         path:"/auth",
         children:[
             {
                 path:"login",
-                element:"login-"
+                element:<Login/>
             },
             {
                 path:"register",

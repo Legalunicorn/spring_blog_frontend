@@ -1,0 +1,28 @@
+.error-box{
+
+    --text-color: rgb(161,1,1);
+
+
+    background-color: hsl(350, 49%, 88%);
+    color: var(--text-color);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    max-width: 100%;
+    align-items: center;
+    border: 1px solid var(--text-color);
+    border-radius: 0.5rem;
+    animation: shake 0.25s linear,appear 0.25s linear;
+
+    svg{
+        min-width: 15px;
+    }
+}
+
+@keyframes shake{
+    0% { transform: translateX(0) }
+    25% { transform: translateX(7px) }
+    50% { transform: translateX(-7px) }
+    75% { transform: translateX(7px) }
+    100% { transform: translateX(0) }
+}

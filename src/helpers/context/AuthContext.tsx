@@ -5,7 +5,7 @@ import {
     createContext,
  } from "react";
 
-interface User{
+export interface User{
     username:string,
     token:string
 }
@@ -26,7 +26,7 @@ interface AuthContextValue extends AuthState {
     | {type:"LOGIN";payload:User} //Define the payload to be a user 
     | {type:"LOGOUT"}
 
- export const AuthContext = createContext<AuthContextValue|null>(null);
+ export const AuthContext = createContext<AuthContextValue|undefined>(undefined);
 
 
  /**

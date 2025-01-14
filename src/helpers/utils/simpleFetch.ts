@@ -12,3 +12,4 @@ export const simpleFetch = async (
 
     return response;
 }
+
