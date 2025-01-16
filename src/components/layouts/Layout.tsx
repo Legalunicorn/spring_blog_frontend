@@ -14,20 +14,20 @@ import Footer from "./Footer";
 const Layout = () => {
 
     const error = useRouteError();
-    const {loading} = useAuthContext();
+    const { loading } = useAuthContext();
 
 
     return (
         <div id="main">
-            <Header/>
+            <Header />
             {error
                 ? <p> ERROR </p>
                 :
                 loading
-                ?"skibidi loading"
-                :<Outlet />
+                    ? "skibidi loading"
+                    : <Outlet />
             }
-            <Footer/>
+            <Footer />
         </div>
     );
 }

@@ -8,7 +8,7 @@ export interface User{
 // }
 
 export interface PostType extends PostSummary{
-    comments: comment[]
+    comments: Comment[]
 }
 
 
@@ -33,7 +33,7 @@ export type TagType = {
     name: string
 }
 
-type comment = {
+export type Comment = {
     id ?: number 
     body: string 
     author: AuthorSummary,
@@ -45,7 +45,7 @@ type comment = {
 type AuthorSummary = {
     id ?: number,
     username: string,
-    profile_picture: string
+    profilePicture: string
 }
 
 export type TagSummary= {

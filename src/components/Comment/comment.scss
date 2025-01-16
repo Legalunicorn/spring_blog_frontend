@@ -1,0 +1,40 @@
+.comment-card {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-neutral-5);
+
+
+
+    .comment-author {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        .comment-meta {
+            p:last-child {
+                font-size: 0.75rem;
+                color: var(--color-neutral-2);
+            }
+        }
+
+        & p:first-of-type {
+            margin-right: 1rem;
+        }
+
+        img {
+            height: 28px;
+            width: 28px;
+            border-radius: 1rem;
+            margin-right: 0.5rem;
+
+        }
+
+        .comment-time {
+            color: var(--color-neutral-2);
+        }
+    }
+
+    .comment-body {
+        margin: 1rem 0;
+    }
+
+}

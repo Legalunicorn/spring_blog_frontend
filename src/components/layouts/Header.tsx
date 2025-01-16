@@ -2,16 +2,19 @@ import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import "./layout.scss"
 import logo from "../../assets/images/rice-bowl-logo.svg";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 const Header = () => {
 
     const {user} = useAuthContext();
+    const navigate = useNavigate();
 
 
 
     return (
         <section id="header">
-            <div className="brand">
+            <div 
+                onClick={()=>navigate("/home")}
+            className="brand">
                 <img src={logo} alt="" />
                 <p>AlgoRice </p>
             </div>

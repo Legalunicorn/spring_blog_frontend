@@ -32,8 +32,12 @@ const Home = () => {
         <div className="home-page page">
             <div className="home-main">
                 <section className="feed-options">
-                    <button>top</button>
-                    <button>recent</button>
+                    <button
+                        onClick={()=>setSort("top")}
+                    >Top</button>
+                    <button
+                        onClick={()=>setSort("recent")}
+                    >Recent</button>
                 </section>
                 {isLoading || data==undefined
                 ?<p>loading</p>
