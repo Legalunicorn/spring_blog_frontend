@@ -1,0 +1,38 @@
+.home-page{
+    display: flex;
+    max-width: var(--max-width);
+    padding: 0 2rem;
+
+
+    .home-main{
+        padding: 2rem;
+        
+        width: 70%;
+        
+        max-width: var(--max-width);
+        // border: 1px solid lime;
+
+    }
+
+    .home-side{
+        padding: 2rem;
+        width: 30%;
+        // border: 1px solid lime;
+    }
+}
+
+
+
+@media only screen and (max-width:600px) {
+
+    .home-page{
+        .home-side{
+            display: none;
+        }
+        .home-main{
+            width: 100%;
+        }
+    }
+
+    
+}

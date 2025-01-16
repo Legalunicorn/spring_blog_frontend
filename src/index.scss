@@ -9,15 +9,27 @@
   --max-width: 1600px;
 
   --color-primary: #88eead;
-  --color-secondary: #167497;
+  --color-secondary: rgb(22, 116, 151);
   --color-accent: #429be4;
   --color-text: #e6fbee;
-  --color-bg:#020f07;
+  --color-bg:#121212;
+
+  --color-primary-80: rgb(136, 238, 173,0.8);
+  --color-primary-60: rgb(136, 238, 173,0.6);
+  --color-primary-40: rgb(136, 238, 173,0.4);
+
+  --color-secondary-80: rgb(22, 116, 151,0.8);
+  --color-secondary-60: rgb(22, 116, 151,0.6);
+  --color-secondary-40: rgb(22, 116, 151,0.4);
 
   --color-neutral-1: #c4c2ce;
   --color-neutral-2: #7c818f;
   --color-neutral-3: #565565;
   --color-neutral-4: #343a40;
+  --color-neutral-5: #1F2022;
+  --color-neutral-6: #17181a;
+
+  --svg-color-primary: invert(89%) sepia(12%) saturate(1333%) hue-rotate(80deg) brightness(97%) contrast(93%);
 
 }
 
@@ -37,13 +49,15 @@ button{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   border: none;
   padding: 0.5rem 1.25rem;
-  background-color: var(--color-text);
+  background-color: var(--color-bg);
   color: var(--color-text);
   border: 1px slid var(--color-text);
 }
 
 .page{
   min-height: 100vh;
+  width: 100%;
+  max-width: var(--max-width);
 }
 
 input,textarea,button{
@@ -54,11 +68,13 @@ input,textarea,button{
 }
 
 
-// #main{
-//   display:flex;
-//   flex-direction: column;
-//   min-height: 100vh;
-// }
+#main{
+  display:flex;
+  flex-direction: column;
+  min-height: 100vh;
+  // max-width: var(--max-width);
+  align-items: center;
+}
 
 a{
   text-decoration:none;

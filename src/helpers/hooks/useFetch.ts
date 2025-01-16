@@ -9,6 +9,8 @@ export function useFetch(){
     const {user} = useAuthContext();
     const navigate = useNavigate();
 
+    console.log("USER: ",user);
+
     const handleFetch = async (
         url:string,
         options:any = {},
@@ -18,14 +20,27 @@ export function useFetch(){
             headers["Content-Type"]="application/json";
         }
         if (user){
+            console.log("there is a user");
             headers.Authorization = `Bearer ${user.token}`
         }
+ 
+        const param = {
+            // headers:headers,
+            mode:"cors",
+            method:"GET",
+            ...options
+        }
+        console.log("params", param);
 
         const response = await fetch(VITE_API_URL+url,{
-            headers: headers,
+            headers,
+            credentials:'include',
             mode:"cors",
+            method:"GET",
             ...options,
         })
+
+
 
         const data:any = await response.json();
 
@@ -37,7 +52,7 @@ export function useFetch(){
             throw new Error("Authentication Invalid. Please Login/Register.")
         } else {
             console.log(`$ERR code: ${response.status}: ${data}`);
-            throw new Error(data.error || 'Failed to fetch data');
+            throw new Error(data.message || 'Failed to fetch data');
         }
     }
 

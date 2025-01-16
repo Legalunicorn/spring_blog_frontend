@@ -1,5 +1,5 @@
 import "./auth.scss";
-import { Form, Link } from "react-router";
+import { Form, Link, useNavigate, useSearchParams } from "react-router";
 import logo from "../../assets/images/rice-bowl-logo.svg"
 import { useState } from "react";
 import { simpleFetch } from "../../helpers/utils/simpleFetch";
@@ -22,6 +22,8 @@ const Register = () => {
     const [inputs,setInputs] = useState<RegisterInputs>({username:"",password:"",confirm_password:""});
     const [loading,setLoading] = useState<boolean>(false);
     const [error,setError] = useState<string>("")
+    const navigate = useNavigate();
+    const [searchParams,setSearchParams] = useSearchParams();
 
 
 
@@ -50,6 +52,13 @@ const Register = () => {
             if (response.ok){
                 dispatch({type:"LOGIN",payload:data})
                 localStorage.setItem("user",JSON.stringify(data));
+                const previous_page = searchParams.get("redirectTo");
+                // if (previous_page!=null){
+                //     navigate(previous_page);
+                // } else {
+                //     navigate("/home");
+                // }
+                
             }else{
                 setError(data.message);
                 console.log(data.message);

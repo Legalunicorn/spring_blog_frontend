@@ -61,6 +61,7 @@ export const AuthContextProvider = ({children}:AuthContextProviderProps) =>{
         user:null
     })
     const [loading,setLoading] = useState<boolean>(true);
+    console.log("CONTEXT LOADING: ",loading);
 
     useEffect(()=>{
         const user = localStorage.getItem("user");

@@ -1,5 +1,5 @@
 import "./auth.scss";
-import { Form, Link } from "react-router";
+import { Form, Link, useNavigate } from "react-router";
 import logo from "../../assets/images/rice-bowl-logo.svg"
 import { useState } from "react";
 import { simpleFetch } from "../../helpers/utils/simpleFetch";
@@ -17,6 +17,7 @@ const Login = () => {
 
     // const myFetch = useFetch();
     const {dispatch} = useAuthContext();
+    const navigate = useNavigate();
 
     const [inputs,setInputs] = useState<LoginInputs>({username:"",password:""});
     const [loading,setLoading] = useState<boolean>(false);
@@ -45,8 +46,10 @@ const Login = () => {
             console.log("data: ",data);
             setLoading(false);
             if (response.ok){
+                console.log("HII")
                 dispatch({type:"LOGIN",payload:data})
                 localStorage.setItem("user",JSON.stringify(data));
+                navigate("/home")
             }else{
                 setError(data.message);
                 console.log(data.message);

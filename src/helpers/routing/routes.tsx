@@ -1,7 +1,10 @@
 
-import { createBrowserRouter } from "react-router"
+import { createBrowserRouter, Navigate } from "react-router"
 import Register from "../../pages/auth/Register";
 import Login from "../../pages/auth/Login";
+import Home from "../../pages/home/Home";
+import Layout from "../../components/layouts/Layout";
+import PostMain from "../../components/postMain/PostMain";
 const router = createBrowserRouter([
     {
         path:"/auth",
@@ -18,11 +21,20 @@ const router = createBrowserRouter([
     },
     {
         path:"/",
+        element: <Layout/>,
         children:[
             {
-                path:"home",
-                element:"-home-"
+                path:"",
+                element: <Navigate to="/home"/>
             },
+            {
+                path:"home",
+                element:<Home/>
+            },
+            {
+                path:"posts/:postId",
+                element:<PostMain/>
+            }
         ]
     }
 
@@ -33,7 +45,12 @@ export default router;
 
 /*
 
-RULE: everything requires authentication, except sign up and login
+rule 
+: every page does not require authentication  (GET request API's)
+-> but buttons (POST/DELETE..) wiill redirect to the login
+-> redirect with a param redirectTo=""
+
+
 
 
 
