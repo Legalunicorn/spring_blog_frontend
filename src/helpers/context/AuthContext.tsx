@@ -5,10 +5,11 @@ import {
     createContext,
  } from "react";
 
-export interface User{
-    username:string,
-    token:string
-}
+// export interface User{
+//     username:string,
+//     token:string
+// }
+import {User} from "../../helpers/types.tsx"
 
 // This is the type that our useReducer will mana
 // The state of the userReducer is also passed inside the context as a global state

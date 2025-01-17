@@ -4,6 +4,7 @@ import { PostSummary, } from "../../helpers/types";
 import "./postCard.scss"
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { format } from "date-fns"
+import { THUMBNAIL_DEFAULT,PFP_DEFAULT } from "../../helpers/constants";
 
 
 type PostCardProps = {
@@ -12,11 +13,10 @@ type PostCardProps = {
 
 //TODO - create a second post card design, where its more square, with a big thumgnail on top following by the title below
 const PostCard = ({ post }: PostCardProps) => {
-    // if (post.thumbnail==null){
-    post.thumbnail = "https://thumbs.dreamstime.com/b/rice-crop-symbol-rice-wheat-ears-design-element-agriculture-grain-colorful-vector-illustration-rice-crop-symbol-rice-wheat-129367791.jpg"
-    // }
 
-    const PFP_DEFAULT = "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+    // if (post.thumbnail==null){
+    post.thumbnail = THUMBNAIL_DEFAULT
+    // }
     const formattedDate = format(post.createdOn, "LLL yyyy");
     const navigate = useNavigate();
 

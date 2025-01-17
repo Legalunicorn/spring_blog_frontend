@@ -5,12 +5,12 @@ import type {InputMode } from "./CreatePost";
 import { Form } from "react-router";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NextButton from "./NextButton";
-import type { PostPreviewable } from "../../helpers/types";
+import type { PostPreviewableType } from "../../helpers/types";
 
 export type createPostProps = {
-    setPostInput: React.Dispatch<React.SetStateAction<PostPreviewable>>,
+    setPostInput: React.Dispatch<React.SetStateAction<PostPreviewableType>>,
     setEditMode:React.Dispatch<React.SetStateAction<InputMode>>;
-    postInput: PostPreviewable
+    postInput: PostPreviewableType
 }
 
 const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps) => {

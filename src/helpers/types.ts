@@ -1,5 +1,6 @@
 export interface User{
     username:string,
+    profilePicture: string,
     token:string
 }
 
@@ -11,25 +12,29 @@ export interface PostType extends PostSummary{
     comments: Comment[]
 }
 
-export interface PostPreviewable {
+export interface PostPreviewableType {
     title:string,
     thumbnail: string,
     body:string,
     author: AuthorSummary,
     like_count: number,
-    tags : TagSummary[]
+    tags : TagSummary[],
+    createdOn: string,
+    // comment_count: number
 }
 
-export interface PostSummary extends PostPreviewable {
+
+//Actual entity from database
+export interface PostSummary extends PostPreviewableType {
     id: string,
-    title: string,
-    body: string ,
+    // title: string,
+    // body: string ,
     draft ?: boolean,
-    author: AuthorSummary,
-    thumbnail :string,
-    tags : TagSummary[],
-    like_count: number,
-    createdOn: string,
+    // author: AuthorSummary,
+    // thumbnail :string,
+    // tags : TagSummary[],
+    // like_count: number,
+    // createdOn: string,
     updatedOn ?: string,
     comment_count:number
     

@@ -1,5 +1,4 @@
-
-const VITE_API_URL = "http://localhost:8080/api"
+import { VITE_API_URL } from "../constants";
 
 export const simpleFetch = async (
     url:string,

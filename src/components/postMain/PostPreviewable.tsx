@@ -3,11 +3,17 @@ import type { PostType } from "../../helpers/types";
 import {format} from "date-fns";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
+import type { PostPreviewableType } from "../../helpers/types";
 
-type PostPreviewableType = {
-    data: PostType
+// type PostPreviewableType = {
+//     data: PostType
+// }
+
+type props ={
+    data: PostPreviewableType
 }
-const PostPreviewable = ({data}:PostPreviewableType) => {
+
+const PostPreviewable = ({data}:props) => {
 
     const formattedDate = format(data.createdOn, "Lo LLL yyyy");
     const PFP_DEFAULT = "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";

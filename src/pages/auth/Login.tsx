@@ -112,7 +112,6 @@ const Login = () => {
                     />
 
 
-
                     <button className="auth-submit" type="submit">Login</button>
                     {error && 
                     <ErrorBox

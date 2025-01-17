@@ -7,13 +7,14 @@ import { format } from "date-fns";
 import Comment from "../Comment/Comment";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import PostPreviewable from "./PostPreviewable";
+import { PFP_DEFAULT,THUMBNAIL_DEFAULT } from "../../helpers/constants";
 
 //Should be able 
 
 
 const PostMain = () => {
-    const PFP_DEFAULT = "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
-    const DEFAULT_THUMBNAIL = "https://thumbs.dreamstime.com/b/rice-crop-symbol-rice-wheat-ears-design-element-agriculture-grain-colorful-vector-illustration-rice-crop-symbol-rice-wheat-129367791.jpg";
+    // const PFP_DEFAULT = "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
+    // const DEFAULT_THUMBNAIL = "https://thumbs.dreamstime.com/b/rice-crop-symbol-rice-wheat-ears-design-element-agriculture-grain-colorful-vector-illustration-rice-crop-symbol-rice-wheat-129367791.jpg";
     const { postId } = useParams();
     const myFetch = useFetch();
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ const PostMain = () => {
     if (isError || data == undefined) return <>Error</>
 
     const formattedDate = format(data.createdOn, "Lo LLL yyyy");
-    data.thumbnail = DEFAULT_THUMBNAIL;
+    data.thumbnail = THUMBNAIL_DEFAULT;
 
     return (
         <div className="post-page page">

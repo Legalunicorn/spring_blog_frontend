@@ -1,6 +1,7 @@
 import "./comment.scss"
 import type { Comment } from "../../helpers/types";
 import {format,formatDistanceToNow} from "date-fns";
+import { PFP_DEFAULT } from "../../helpers/constants";
 
 
 type CommentProps  = {
@@ -8,7 +9,6 @@ type CommentProps  = {
 }
 
 const Comment = ({comment}:CommentProps) => {
-    const PFP_DEFAULT = "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
     // const formattedDate = formatDistanceToNow(comment.createdOn);
     const formattedDate = format(comment.createdOn,"Lo LLL yyyy");
 
@@ -16,7 +16,7 @@ const Comment = ({comment}:CommentProps) => {
     return (
         <article className="comment-card">
             <div className="comment-author">
-                <img src={comment.author.profilePicture} alt="" />
+                <img src={comment.author.profilePicture?comment.author.profilePicture:PFP_DEFAULT} alt="" />
                 <div className="comment-meta">
                     <p>{comment.author.username}</p>
                     <p>{formattedDate}</p>

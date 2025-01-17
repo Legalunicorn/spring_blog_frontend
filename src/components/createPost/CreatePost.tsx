@@ -4,6 +4,7 @@ import { useState } from "react";
 import CreatePostMain from "./CreatePostMain";
 import ViewOptions from "./ViewOption";
 import CreatePostBody from "./CreatePostBody";
+import { PFP_DEFAULT } from "../../helpers/constants";
 
 
 //TODO create a wrapper for protected end points such as this one 
@@ -13,25 +14,28 @@ import CreatePostBody from "./CreatePostBody";
 //     body: string
 //     tags: string[]
 // }
-import type { PostPreviewable } from "../../helpers/types";
+import type { PostPreviewableType, User } from "../../helpers/types";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
+import PreviewCreatePost from "./PreviewCreatePost";
 export type InputMode = "main" | "body" | "preview"
 
 const CreatePost = () => {
-    const {user} = useAuthContext();
+    const {user}= useAuthContext() as {user:User}; //Auth validation
 
 
     const navigate = useNavigate();
-    const [postInput, setPostInput] = useState<PostPreviewable>({
+    const [postInput, setPostInput] = useState<PostPreviewableType>({
         title: "",
         thumbnail: "",
         body: "",
         tags: [],
+        //Static variables for the sake of previewing 
         like_count:0,
         author:{
-            username:"Demo",
-            profilePicture:"demo"
-        }
+            username: user? user.username: "demo",
+            profilePicture: user && user.profilePicture? user.profilePicture: PFP_DEFAULT
+        },
+        createdOn: new Date().toISOString()
     })
 
     const [editMode, setEditMode] = useState<InputMode>("body");
@@ -59,7 +63,9 @@ const CreatePost = () => {
                     postInput={postInput}
                     setEditMode={setEditMode}
                   />
-                : <p>hi</p>
+                : <PreviewCreatePost
+                     post={postInput}
+                  />
 
             }
             <section className="saving-options">

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { useAuthContext } from "./useAuthContext";
 
 
-const VITE_API_URL = "http://localhost:8080/api"
+import { VITE_API_URL } from "../constants";
 
 export function useFetch(){
 
