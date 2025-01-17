@@ -1,7 +1,7 @@
 import "./createPost.scss"
 // import type { InputMode } from "./CreatePost";
-import { useState,useEffect, useRef } from "react";
-import type {InputMode } from "./CreatePost";
+import { useState, useEffect, useRef } from "react";
+import type { InputMode } from "./CreatePost";
 import { Form } from "react-router";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NextButton from "./NextButton";
@@ -9,32 +9,33 @@ import type { PostPreviewableType } from "../../helpers/types";
 
 export type createPostProps = {
     setPostInput: React.Dispatch<React.SetStateAction<PostPreviewableType>>,
-    setEditMode:React.Dispatch<React.SetStateAction<InputMode>>;
-    postInput: PostPreviewableType
+    setEditMode: React.Dispatch<React.SetStateAction<InputMode>>;
+    postInput: PostPreviewableType,
+    // formRef: React.RefObject<HTMLFormElement>
 }
 
-const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps) => {
+const CreatePostMain = ({ setPostInput, postInput, setEditMode }: createPostProps) => {
 
-    const [currentTag,setCurrentTag] = useState("");
-    const tagInput = useRef<HTMLInputElement|null>(null);
+    const [currentTag, setCurrentTag] = useState("");
+    const tagInput = useRef<HTMLInputElement | null>(null);
 
-    function handleKeyDown(e:React.KeyboardEvent<HTMLInputElement>){
-        if (e.key==='Enter'){
+    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.key === 'Enter') {
             e.stopPropagation();
             e.preventDefault(); //Bug where tag deletes upon creation because of form submissions 
             console.log(postInput.tags)
             // const duplicate = postInput.ta
-            if (currentTag.length === 0 || postInput.tags.length>=5){
+            if (currentTag.length === 0 || postInput.tags.length >= 5) {
                 setCurrentTag("");
                 return;
             }
-            console.log("curr tag:" , currentTag);
+            console.log("curr tag:", currentTag);
 
-            setPostInput((prev)=>({
+            setPostInput((prev) => ({
                 ...prev,
-                tags:[
+                tags: [
                     ...prev.tags,
-                    {name:currentTag}
+                    { name: currentTag }
                 ]
             }))
             setCurrentTag("");
@@ -48,23 +49,23 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps
         })
     }
 
-    const changeURL = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const changeURL = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPostInput({
             ...postInput,
             thumbnail: e.currentTarget.value
         })
     }
 
-    const changeTag = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const changeTag = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCurrentTag(e.currentTarget.value);
     }
 
-    const deleteTag = (tag:string)=>{
-        console.log("DELETING: ",tag);
+    const deleteTag = (tag: string) => {
+        console.log("DELETING: ", tag);
         // deletes the value from PostInput.tags
-        setPostInput(prev=>({
+        setPostInput(prev => ({
             ...prev,
-            tags:prev.tags.filter(t=>t.name!==tag)
+            tags: prev.tags.filter(t => t.name !== tag)
         }))
     }
 
@@ -72,7 +73,10 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps
 
     return (
         <section className="create-post-main">
-            <Form className="create-main-form">
+            <Form
+                className="create-main-form"
+                // ref={formRef}
+            >
                 <label htmlFor="title">
                     <Icon icon="tabler:bulb" width="16" height="16" />
                     Title:
@@ -80,21 +84,23 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps
                 <input
                     type="text"
                     name="title"
+                    // required
                     minLength={1}
                     maxLength={200} //TODO change backend limit to 200
                     onChange={changeTitle}
                     value={postInput.title}
                     placeholder="eg. My favourite Cats"
+                    title="BRO"
 
 
                 />
                 <label htmlFor="thumbnail">
-                    <Icon icon="bx:image"/>
+                    <Icon icon="bx:image" />
                     Image URL
                 </label>
-                <input 
-                    name="thumbnail" 
-                    type="url" 
+                <input
+                    name="thumbnail"
+                    type="url"
                     minLength={1}
                     onChange={changeURL}
                     value={postInput.thumbnail}
@@ -102,37 +108,42 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps
                 />
 
                 <label htmlFor="tags">
-                    <Icon icon="mdi:tag"/>
+                    <Icon icon="mdi:tag" />
                     Tags (optional)
                 </label>
-                <input 
+                <input
                     ref={tagInput}
                     type="text"
                     name="tags"
                     onChange={changeTag}
-                    value={currentTag}    
+                    value={currentTag}
                     onKeyDown={handleKeyDown}
                     placeholder="Press 'Enter' to add the input"
                 />
                 <div className="added-tags">
-                    {postInput.tags && postInput.tags.map(tag=>(
-                            <div className="added-tag">
-                                <span>{tag.name}</span>
-                                <button type="button"
-                                    onClick={()=>deleteTag(tag.name)}
-                                >
-                                    ✖
-                                </button>
-                            </div>
+                    {postInput.tags && postInput.tags.map(tag => (
+                        <div className="added-tag">
+                            <span>{tag.name}</span>
+                            <button type="button"
+                                onClick={() => deleteTag(tag.name)}
+                            >
+                                ✖
+                            </button>
+                        </div>
                     ))}
 
                 </div>
                 <div className="direction-buttons">
-                    <NextButton target="body" setEditMode={setEditMode}/>
-                </div>
-                
+                    <NextButton
+                        target="body"
+                        setEditMode={setEditMode}
+                        // formRef={formRef}
+                    />
 
-                
+                </div>
+
+
+
             </Form>
         </section>
     );

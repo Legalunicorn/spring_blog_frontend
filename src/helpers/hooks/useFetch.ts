@@ -9,7 +9,7 @@ export function useFetch(){
     const {user} = useAuthContext();
     const navigate = useNavigate();
 
-    console.log("USER: ",user);
+    // console.log("USER: ",user);
 
     const handleFetch = async (
         url:string,

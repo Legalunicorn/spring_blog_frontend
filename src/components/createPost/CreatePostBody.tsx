@@ -13,7 +13,7 @@ const CreatePostBody = ({ setPostInput, postInput,setEditMode }:createPostProps)
 
 
     const handleChangeBody = (e:React.ChangeEvent<HTMLTextAreaElement>)=>{
-        console.log(e.currentTarget.value)
+        // console.log(e.currentTarget.value)
         setPostInput({
             ...postInput,
             body: e.currentTarget.value

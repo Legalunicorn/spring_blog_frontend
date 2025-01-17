@@ -1,29 +1,28 @@
 import { Form, useNavigate } from "react-router";
 import "./createPost.scss"
-import { useState } from "react";
+import { useState,useRef } from "react";
 import CreatePostMain from "./CreatePostMain";
 import ViewOptions from "./ViewOption";
 import CreatePostBody from "./CreatePostBody";
 import { PFP_DEFAULT } from "../../helpers/constants";
-
-
-//TODO create a wrapper for protected end points such as this one 
-// export type PostInputType = {
-//     title: string,
-//     thumbnail: string,
-//     body: string
-//     tags: string[]
-// }
 import type { PostPreviewableType, User } from "../../helpers/types";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import PreviewCreatePost from "./PreviewCreatePost";
+import { useFetch } from "../../helpers/hooks/useFetch";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 export type InputMode = "main" | "body" | "preview"
+
 
 const CreatePost = () => {
     const {user}= useAuthContext() as {user:User}; //Auth validation
 
 
     const navigate = useNavigate();
+    const myFetch = useFetch();
+    // const mainFormRef = useRef<null|HTMLFormElement>(null);
+    // const bodyFormRef = useRef<null|HTMLFormElement>(null);
+    const queryClient = useQueryClient();
     const [postInput, setPostInput] = useState<PostPreviewableType>({
         title: "",
         thumbnail: "",
@@ -39,6 +38,46 @@ const CreatePost = () => {
     })
 
     const [editMode, setEditMode] = useState<InputMode>("body");
+
+    const handleSubmit = async(e:React.FormEvent<HTMLButtonElement>,draft:boolean)=>{
+        const data:any = postInput
+        //Not needed for form submission
+        delete data.author;
+        delete data.like_count;
+        delete data.createOn;
+        data.draft = draft;
+
+        //Validation
+        if (data.title.length==0 || data.title.length>=150){
+            toast.error("Title must be between 1-150 characters");
+            return;
+        }
+        if (data.body.length==0){
+            toast.error("Body must not be empty!")
+            return;
+        }
+        if (data.body.length>50000){
+            toast.error("Post body must not exceed 50,000!");
+            return;
+        }
+        createPostMutation.mutate(data)
+    }
+
+    // }
+    const createPostMutation = useMutation({
+        mutationFn:(postInput)=>myFetch("/posts",{
+            method:"POST",
+            body: JSON.stringify(postInput),
+        }),
+        onSuccess: ()=>{
+            queryClient.invalidateQueries({queryKey:["feed"]});
+            toast.success("Post created!")
+            navigate("/home")
+        },
+        onError(error,variables,context){
+            console.log(error.message);
+        }
+    })
 
 
     return (
@@ -56,12 +95,14 @@ const CreatePost = () => {
                     setPostInput={setPostInput}
                     postInput={postInput}
                     setEditMode={setEditMode}
+                    // formRef={mainFormRef}
                 />
                 :editMode=="body"
                 ? <CreatePostBody
                     setPostInput={setPostInput}
                     postInput={postInput}
                     setEditMode={setEditMode}
+                    // formRef={bodyFormRef}
                   />
                 : <PreviewCreatePost
                      post={postInput}
@@ -69,8 +110,12 @@ const CreatePost = () => {
 
             }
             <section className="saving-options">
-                <button>Draft</button>
-                <button>Post</button>
+                <button
+                    onClick={(e)=>handleSubmit(e,true)}
+                >Draft</button>
+                <button
+                    onClick={(e)=>handleSubmit(e,false)}
+                >Post</button>
             </section>
 
 

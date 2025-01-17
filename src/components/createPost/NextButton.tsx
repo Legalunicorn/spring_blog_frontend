@@ -4,14 +4,31 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 type NextButtonProps = {
     setEditMode: React.Dispatch<React.SetStateAction<InputMode>>;
-    target: InputMode
+    target: InputMode,
+    formRef?: React.RefObject<HTMLFormElement>
 }
-const NextButton = ({setEditMode,target}:NextButtonProps) => {
+const NextButton = ({setEditMode,target,formRef}:NextButtonProps) => {
+
+    const handleClick = ()=>{
+
+        // if (formRef){
+        //     e.preventDefault();
+        //     if (formRef.current && formRef.current.checkValidity()){
+                
+        //         console.log("FAIL!",formRef.current)
+        //         formRef.current.reportValidity();
+        //         return;
+        //     }
+        //     //make sure form is validated
+            
+        // }
+        setEditMode(target);
+    }
     return ( 
 
         <button 
         className="next"
-        onClick={()=>setEditMode(target)}
+        onClick={handleClick}
     >
         
         Next
