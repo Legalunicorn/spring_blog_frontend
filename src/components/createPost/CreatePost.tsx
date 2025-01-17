@@ -7,24 +7,31 @@ import CreatePostBody from "./CreatePostBody";
 
 
 //TODO create a wrapper for protected end points such as this one 
-export type PostInputType = {
-    title: string,
-    thumbnail: string,
-    body: string
-    tags: string[]
-}
-
+// export type PostInputType = {
+//     title: string,
+//     thumbnail: string,
+//     body: string
+//     tags: string[]
+// }
+import type { PostPreviewable } from "../../helpers/types";
+import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 export type InputMode = "main" | "body" | "preview"
 
 const CreatePost = () => {
+    const {user} = useAuthContext();
 
 
     const navigate = useNavigate();
-    const [postInput, setPostInput] = useState<PostInputType>({
+    const [postInput, setPostInput] = useState<PostPreviewable>({
         title: "",
         thumbnail: "",
         body: "",
-        tags: []
+        tags: [],
+        like_count:0,
+        author:{
+            username:"Demo",
+            profilePicture:"demo"
+        }
     })
 
     const [editMode, setEditMode] = useState<InputMode>("body");

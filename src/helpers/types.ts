@@ -17,7 +17,7 @@ export interface PostPreviewable {
     body:string,
     author: AuthorSummary,
     like_count: number,
-    tag ?: TagSummary[]
+    tags : TagSummary[]
 }
 
 export interface PostSummary extends PostPreviewable {
@@ -27,7 +27,7 @@ export interface PostSummary extends PostPreviewable {
     draft ?: boolean,
     author: AuthorSummary,
     thumbnail :string,
-    tags ?: TagSummary[],
+    tags : TagSummary[],
     like_count: number,
     createdOn: string,
     updatedOn ?: string,

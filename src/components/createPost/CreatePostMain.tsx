@@ -1,15 +1,16 @@
 import "./createPost.scss"
 // import type { InputMode } from "./CreatePost";
 import { useState,useEffect, useRef } from "react";
-import type {InputMode, PostInputType } from "./CreatePost";
+import type {InputMode } from "./CreatePost";
 import { Form } from "react-router";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NextButton from "./NextButton";
+import type { PostPreviewable } from "../../helpers/types";
 
 export type createPostProps = {
-    setPostInput: React.Dispatch<React.SetStateAction<PostInputType>>,
+    setPostInput: React.Dispatch<React.SetStateAction<PostPreviewable>>,
     setEditMode:React.Dispatch<React.SetStateAction<InputMode>>;
-    postInput: PostInputType
+    postInput: PostPreviewable
 }
 
 const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps) => {
@@ -22,7 +23,8 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps
             e.stopPropagation();
             e.preventDefault(); //Bug where tag deletes upon creation because of form submissions 
             console.log(postInput.tags)
-            if (currentTag.length === 0 || postInput.tags.includes(currentTag) || postInput.tags.length>=5){
+            // const duplicate = postInput.ta
+            if (currentTag.length === 0 || postInput.tags.length>=5){
                 setCurrentTag("");
                 return;
             }
@@ -32,7 +34,7 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps
                 ...prev,
                 tags:[
                     ...prev.tags,
-                    currentTag
+                    {name:currentTag}
                 ]
             }))
             setCurrentTag("");
@@ -62,7 +64,7 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps
         // deletes the value from PostInput.tags
         setPostInput(prev=>({
             ...prev,
-            tags:prev.tags.filter(name=>name!==tag)
+            tags:prev.tags.filter(t=>t.name!==tag)
         }))
     }
 
@@ -115,9 +117,9 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps
                 <div className="added-tags">
                     {postInput.tags && postInput.tags.map(tag=>(
                             <div className="added-tag">
-                                <span>{tag}</span>
+                                <span>{tag.name}</span>
                                 <button type="button"
-                                    onClick={()=>deleteTag(tag)}
+                                    onClick={()=>deleteTag(tag.name)}
                                 >
                                     ✖
                                 </button>
