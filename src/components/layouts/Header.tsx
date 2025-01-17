@@ -17,15 +17,19 @@ const Header = () => {
             className="brand">
                 <img src={logo} alt="" />
                 <p>AlgoRice </p>
+
+            
             </div>
 
             <div className="account">
                 {user 
                 ?<>
+                    <p onClick={()=>navigate("/posts/create")}>x</p>
                     <Icon icon="iconamoon:profile-light" width="24" height="24" />
                     <Icon icon="material-symbols:logout" width="24" height="24" />
                 </>
                 :<>
+                    <p onClick={()=>navigate("/posts/create")}>x</p>
                     <Link to={"/auth/register"}> Register</Link>
                     <p>{" | "}</p>
                     <Link to={"/auth/register"}> Login</Link>

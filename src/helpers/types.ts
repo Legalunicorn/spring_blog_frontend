@@ -23,6 +23,8 @@ export interface PostSummary  {
     like_count: number,
     createdOn: string,
     updatedOn ?: string,
+    comment_count:number
+    
 
 }
 

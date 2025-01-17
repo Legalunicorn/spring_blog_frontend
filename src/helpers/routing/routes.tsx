@@ -5,6 +5,8 @@ import Login from "../../pages/auth/Login";
 import Home from "../../pages/home/Home";
 import Layout from "../../components/layouts/Layout";
 import PostMain from "../../components/postMain/PostMain";
+import CreatePost from "../../components/createPost/CreatePost";
+import { ProtectedRoute } from "./ProtectedRoute";
 const router = createBrowserRouter([
     {
         path:"/auth",
@@ -34,6 +36,15 @@ const router = createBrowserRouter([
             {
                 path:"posts/:postId",
                 element:<PostMain/>
+            },
+            {
+                element:<ProtectedRoute/>,
+                children:[
+                    {
+                        path:"posts/create",
+                        element:<CreatePost/>
+                    }
+                ]
             }
         ]
     }

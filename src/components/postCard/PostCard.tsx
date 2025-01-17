@@ -49,7 +49,7 @@ const PostCard = ({ post }: PostCardProps) => {
                     </div>
                     <div>
                         <Icon icon="system-uicons:speech-bubble" width="21" height="21" />
-                        <p>1</p>
+                        <p>{post.comment_count || 0}</p>
                     </div>
                     <div className="post-date">
                         <Icon icon="uit:calender" width="21" height="21" />
