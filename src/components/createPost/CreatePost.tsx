@@ -3,6 +3,7 @@ import "./createPost.scss"
 import { useState } from "react";
 import CreatePostMain from "./CreatePostMain";
 import ViewOptions from "./ViewOption";
+import CreatePostBody from "./CreatePostBody";
 
 
 //TODO create a wrapper for protected end points such as this one 
@@ -46,17 +47,14 @@ const CreatePost = () => {
                     setEditMode={setEditMode}
                 />
                 :editMode=="body"
-                ? <p>body</p>
-                : <p></p>
+                ? <CreatePostBody
+                    setPostInput={setPostInput}
+                    postInput={postInput}
+                    setEditMode={setEditMode}
+                  />
+                : <p>hi</p>
 
             }
-
-            {/* <CreatePostMain
-                setPostInput={setPostInput}
-                postInput={postInput}
-            /> */}
-
-
             <section className="saving-options">
                 <button>Draft</button>
                 <button>Post</button>

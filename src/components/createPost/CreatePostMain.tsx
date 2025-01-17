@@ -4,14 +4,15 @@ import { useState,useEffect, useRef } from "react";
 import type {InputMode, PostInputType } from "./CreatePost";
 import { Form } from "react-router";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import NextButton from "./NextButton";
 
-type createPostMainProps = {
+export type createPostProps = {
     setPostInput: React.Dispatch<React.SetStateAction<PostInputType>>,
     setEditMode:React.Dispatch<React.SetStateAction<InputMode>>;
     postInput: PostInputType
 }
 
-const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostMainProps) => {
+const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostProps) => {
 
     const [currentTag,setCurrentTag] = useState("");
     const tagInput = useRef<HTMLInputElement|null>(null);
@@ -72,7 +73,7 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostMainP
             <Form className="create-main-form">
                 <label htmlFor="title">
                     <Icon icon="tabler:bulb" width="16" height="16" />
-                    Write an interesting title
+                    Title:
                 </label>
                 <input
                     type="text"
@@ -87,7 +88,7 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostMainP
                 />
                 <label htmlFor="thumbnail">
                     <Icon icon="bx:image"/>
-                    Image URL for thumbnail: 
+                    Image URL
                 </label>
                 <input 
                     name="thumbnail" 
@@ -124,6 +125,10 @@ const CreatePostMain = ({ setPostInput, postInput,setEditMode }: createPostMainP
                     ))}
 
                 </div>
+                <div className="direction-buttons">
+                    <NextButton target="body" setEditMode={setEditMode}/>
+                </div>
+                
 
                 
             </Form>

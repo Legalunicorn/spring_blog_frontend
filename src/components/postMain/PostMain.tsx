@@ -6,6 +6,7 @@ import { useFetch } from "../../helpers/hooks/useFetch";
 import { format } from "date-fns";
 import Comment from "../Comment/Comment";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import PostPreviewable from "./PostPreviewable";
 
 //Should be able 
 
@@ -37,7 +38,8 @@ const PostMain = () => {
 
     return (
         <div className="post-page page">
-            <section className="post-main">
+            <PostPreviewable data={data}/>
+            {/* <section className="post-main">
                 <p className="post-title">{data?.title}</p>
 
                 <div className="post-tags">
@@ -58,16 +60,13 @@ const PostMain = () => {
                         </div>
                         
                     </div>
-
-                    {/* <span>•</span> */}
-                    
                     
                 </div>
                 <img src={data.thumbnail ? data.thumbnail : DEFAULT_THUMBNAIL} alt="" className="post-picture" />
             </section>
             <section className="post-body">
                 {data.body}
-            </section>
+            </section> */}
             <section className="post-comments">
                 <div className="comments-header">
                     <span>Responses ({data.comments.length})</span>

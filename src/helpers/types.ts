@@ -11,14 +11,22 @@ export interface PostType extends PostSummary{
     comments: Comment[]
 }
 
+export interface PostPreviewable {
+    title:string,
+    thumbnail: string,
+    body:string,
+    author: AuthorSummary,
+    like_count: number,
+    tag ?: TagSummary[]
+}
 
-export interface PostSummary  {
+export interface PostSummary extends PostPreviewable {
     id: string,
     title: string,
     body: string ,
     draft ?: boolean,
     author: AuthorSummary,
-    thumbnail ?:string,
+    thumbnail :string,
     tags ?: TagSummary[],
     like_count: number,
     createdOn: string,
@@ -51,6 +59,6 @@ type AuthorSummary = {
 }
 
 export type TagSummary= {
-    id: number,
+    id?: number,
     name:string
 }
