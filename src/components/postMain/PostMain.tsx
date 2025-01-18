@@ -3,52 +3,69 @@ import "./postMain.scss"
 import { useQuery } from "@tanstack/react-query";
 import { PostType } from "../../helpers/types";
 import { useFetch } from "../../helpers/hooks/useFetch";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 import Comment from "../Comment/Comment";
-import { Icon } from "@iconify/react/dist/iconify.js";
+// import { Icon } from "@iconify/react/dist/iconify.js";
 import PostPreviewable from "./PostPreviewable";
-import { PFP_DEFAULT,THUMBNAIL_DEFAULT } from "../../helpers/constants";
+import {THUMBNAIL_DEFAULT } from "../../helpers/constants";
+import CreateComment from "./CreateComment";
+import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 
 //Should be able 
 
 
 const PostMain = () => {
-    const { postId } = useParams();
+    var { postId } = useParams();
     const myFetch = useFetch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    const {user} = useAuthContext();
     const {
         data,
         isLoading,
         isError,
-        error
+        // error
     } = useQuery<PostType>({
-        queryKey: ["post", postId],
+        queryKey: ["post", Number(postId)],
         queryFn: () => myFetch(`/posts/${postId}`)
     })
-    console.log(data);
+    // console.log(data);
 
 
     //TODO handle the loading properlty
     if (isLoading) return <>Loading</>;
     if (isError || data == undefined) return <>Error</>
 
-    const formattedDate = format(data.createdOn, "Lo LLL yyyy");
-    data.thumbnail = THUMBNAIL_DEFAULT;
+    // const formattedDate = format(data.createdOn, "Lo LLL yyyy");
+    // data.thumbnail = THUMBNAIL_DEFAULT;
+    if (data.thumbnail==""){
+        data.thumbnail = THUMBNAIL_DEFAULT;
+    }
 
     return (
         <div className="post-page page">
-            <PostPreviewable data={data}/>
+            <PostPreviewable
+                data={data}
+                isLive={true}
+            />
+            {/* Add a response if neeeded */}
+
             <section className="post-comments">
                 <div className="comments-header">
                     <span>Responses ({data.comments.length})</span>
                 </div>
+                {user?
+                
+                
+                <CreateComment
+                postId={Number(postId)}
+                />
+                :<p>(Login to create responses.)</p>
+                }      
                 <div className="comments-container">
                     {data.comments && data.comments.map(comment =>
                         <Comment comment={comment} />
                     )}
                 </div>
-
-
             </section>
 
 

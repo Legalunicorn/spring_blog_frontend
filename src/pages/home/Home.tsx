@@ -14,7 +14,6 @@ const Home = () => {
 
     const myFetch = useFetch();
     const navigate = useNavigate();
-    //Sort by ne
     const [sort,setSort] = useState<feedType>("recent");
 
     const {
@@ -34,9 +33,11 @@ const Home = () => {
                 <section className="feed-options">
                     <button
                         onClick={()=>setSort("top")}
+                        className={sort=="top"?"selected":""}
                     >Top</button>
                     <button
                         onClick={()=>setSort("recent")}
+                        className={sort=="recent"?"selected":""}
                     >Recent</button>
                 </section>
                 {isLoading || data==undefined
@@ -54,21 +55,3 @@ const Home = () => {
 }
  
 export default Home;
-
-/*
-
-
-  sort options 
-
-  post 
-
-  post 
-
-  post 
-
-
-  post 
-
-
-  post 
-*/

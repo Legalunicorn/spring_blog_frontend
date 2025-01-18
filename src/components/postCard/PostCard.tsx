@@ -15,7 +15,7 @@ type PostCardProps = {
 const PostCard = ({ post }: PostCardProps) => {
 
     // if (post.thumbnail==null){
-    post.thumbnail = THUMBNAIL_DEFAULT
+    if (post.thumbnail==="") post.thumbnail= THUMBNAIL_DEFAULT;
     // }
     const formattedDate = format(post.createdOn, "LLL yyyy");
     const navigate = useNavigate();

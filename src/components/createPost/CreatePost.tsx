@@ -16,12 +16,11 @@ export type InputMode = "main" | "body" | "preview"
 
 const CreatePost = () => {
     const {user}= useAuthContext() as {user:User}; //Auth validation
+    // const {user} = useAuthContext();
 
 
     const navigate = useNavigate();
     const myFetch = useFetch();
-    // const mainFormRef = useRef<null|HTMLFormElement>(null);
-    // const bodyFormRef = useRef<null|HTMLFormElement>(null);
     const queryClient = useQueryClient();
     const [postInput, setPostInput] = useState<PostPreviewableType>({
         title: "",
@@ -106,6 +105,7 @@ const CreatePost = () => {
                   />
                 : <PreviewCreatePost
                      post={postInput}
+                     
                   />
 
             }
@@ -124,18 +124,3 @@ const CreatePost = () => {
 }
 
 export default CreatePost;
-
-/*
-
-two tables 
-
-
-one 
-- title
-- tags 
-- thumbnail
-
-
-two 
-- large area for boxy 
-*/

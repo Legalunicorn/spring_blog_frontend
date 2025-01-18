@@ -7,11 +7,10 @@ import PostPreviewable from "../postMain/PostPreviewable";
 const PreviewCreatePost = ({post}:{post:PostPreviewableType}) => {
     return ( 
         <div className="post-preview">
-                    <PostPreviewable
-            data={post}
-        />
-
-
+            <PostPreviewable
+                data={post}
+                isLive={false}
+            />
         </div>
 
     );

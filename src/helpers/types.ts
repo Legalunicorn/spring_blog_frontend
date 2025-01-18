@@ -13,6 +13,7 @@ export interface PostType extends PostSummary{
 }
 
 export interface PostPreviewableType {
+    id ?: string,
     title:string,
     thumbnail: string,
     body:string,

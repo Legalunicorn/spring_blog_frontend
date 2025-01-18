@@ -42,7 +42,12 @@ export function useFetch(){
 
 
 
-        const data:any = await response.json();
+        // const data:any = await response.json();
+        let data:any = null;
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")){
+            data = await response.json();
+        }
 
         if (response.ok){
             return data
