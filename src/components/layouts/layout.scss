@@ -1,10 +1,12 @@
 #header{
-    padding: 1.5rem 2.5rem;
+    background-color: var(--color-neutral-6);
+    padding: 1rem 2.5rem;
     width: 100%;
     display:flex;
     max-width: var(--max-width);
     align-items: center;
-    // border: 1px solid red;
+
+
 
     .brand{
         display: flex;
@@ -19,26 +21,29 @@
         background-image: linear-gradient(var(--color-text),var(--color-neutral-1));
         color:transparent;
         background-clip: text;
+
+        img{
+            filter: invert(100%) sepia(44%) saturate(1%) hue-rotate(239deg) brightness(102%) contrast(101%);
+        }
     }
 
     img{
         justify-self: center;
         align-self: center;
-        width: 35px;
+        width: 24px;
+        border-radius:24px;
         aspect-ratio: 1;
-        filter: invert(100%) sepia(44%) saturate(1%) hue-rotate(239deg) brightness(102%) contrast(101%);
-        // filter: var(--svg-color-primary)
+        
 
     }
 
     .account{
-        // border: 1px solid red;
         margin-left: auto;
         display: flex;
         gap: 0.5rem;
         color: var(--color-neutral-2);
 
-        &:hover{
+        > svg:hover{
             color: var(--color-text);
         }
     }
@@ -47,7 +52,7 @@
 
 
 #footer{
-    // border: 1px solid red;
-    padding: 0.5rem;
+    margin-top: 5rem;
+    padding: 1rem 1.5rem;
     width: 100%;
 }

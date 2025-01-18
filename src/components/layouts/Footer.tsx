@@ -2,7 +2,10 @@ import "./layout.scss"
 const Footer = () => {
     return (
         <section id="footer">
-            footer
+            <p>
+                Created by{" "}
+                <a href="https://github.com/Legalunicorn">@LegalUnicorn</a>
+            </p>
         </section>
     );
 }

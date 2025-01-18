@@ -30,7 +30,8 @@ export function useFetch(){
             method:"GET",
             ...options
         }
-        console.log("params", param);
+        // console.log("params", param);
+        console.log(url);
 
         const response = await fetch(VITE_API_URL+url,{
             headers,

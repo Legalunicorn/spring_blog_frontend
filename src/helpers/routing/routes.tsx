@@ -1,5 +1,6 @@
 
 import { createBrowserRouter, Navigate } from "react-router"
+import UserProfile from "../../pages/user/UserProfile";
 import Register from "../../pages/auth/Register";
 import Login from "../../pages/auth/Login";
 import Home from "../../pages/home/Home";
@@ -7,6 +8,7 @@ import Layout from "../../components/layouts/Layout";
 import PostMain from "../../components/postMain/PostMain";
 import CreatePost from "../../components/createPost/CreatePost";
 import { ProtectedRoute } from "./ProtectedRoute";
+
 const router = createBrowserRouter([
     {
         path:"/auth",
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
                         element:<CreatePost/>
                     }
                 ]
+            },
+            {
+                path:"users/:username",
+                element: <UserProfile/>
             }
         ]
     }

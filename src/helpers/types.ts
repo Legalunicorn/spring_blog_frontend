@@ -8,6 +8,7 @@ export interface User{
 
 // }
 
+
 export interface PostType extends PostSummary{
     comments: Comment[]
 }
@@ -58,7 +59,7 @@ export type Comment = {
     updatedOn?: string
 }
 
-type AuthorSummary = {
+export type AuthorSummary = {
     id ?: number,
     username: string,
     profilePicture: string

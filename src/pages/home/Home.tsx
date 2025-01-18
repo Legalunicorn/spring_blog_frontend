@@ -23,8 +23,10 @@ const Home = () => {
         error
     } = useQuery<PostSummary[]>({
         queryKey: ["feed",sort],
-        queryFn: ()=> myFetch(`/posts`)
+        queryFn: ()=> myFetch(`/posts?sort=${sort}`)
     })
+
+    console.log("HOME: ",data)
 
     //Side page for : tags
     return (
@@ -43,7 +45,7 @@ const Home = () => {
                 {isLoading || data==undefined
                 ?<p>loading</p>
                 :data.map(post=>(
-                    <PostCard post={post}/>
+                    <PostCard key={post.id} post={post}/>
                 ))
                 }
             </div>

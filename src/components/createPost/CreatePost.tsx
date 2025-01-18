@@ -64,9 +64,12 @@ const CreatePost = () => {
 
     // }
     const createPostMutation = useMutation({
-        mutationFn:(postInput)=>myFetch("/posts",{
+        mutationFn:(postInput:PostPreviewableType)=>myFetch("/posts",{
             method:"POST",
-            body: JSON.stringify(postInput),
+            body: JSON.stringify({
+                ...postInput,
+                tags:postInput.tags.map(tag=>tag.name)
+            }),
         }),
         onSuccess: ()=>{
             queryClient.invalidateQueries({queryKey:["feed"]});

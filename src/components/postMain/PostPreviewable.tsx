@@ -7,6 +7,7 @@ import type { PostPreviewableType } from "../../helpers/types";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useFetch } from "../../helpers/hooks/useFetch";
+import { useNavigate } from "react-router";
 
 // type PostPreviewableType = {
 //     data: PostType
@@ -19,6 +20,7 @@ type props = {
 
 const PostPreviewable = ({ data, isLive }: props) => {
     const myFetch = useFetch();
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
     const formattedDate = format(data.createdOn, "Lo LLL yyyy");
     const PFP_DEFAULT = "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
@@ -90,7 +92,11 @@ const PostPreviewable = ({ data, isLive }: props) => {
                         <p>{tag.name}</p>
                     ))}
                 </div>
-                <div className="post-author" >
+                <div className="post-author"
+                    onClick={()=>{
+                        navigate(`/users/${data.author.username}`)
+                    }}
+                >
                     <div className="author">
                         <img className="pfp" src={data.author.profilePicture ? data.author.profilePicture : PFP_DEFAULT} alt="" />
                         <div>
@@ -99,9 +105,7 @@ const PostPreviewable = ({ data, isLive }: props) => {
                                 <Icon width="20" icon="uit:calender" />
                                 <span>{formattedDate}</span>
                             </p>
-
                         </div>
-
                     </div>
 
                 </div>

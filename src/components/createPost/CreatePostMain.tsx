@@ -23,19 +23,22 @@ const CreatePostMain = ({ setPostInput, postInput, setEditMode }: createPostProp
         if (e.key === 'Enter') {
             e.stopPropagation();
             e.preventDefault(); //Bug where tag deletes upon creation because of form submissions 
-            console.log(postInput.tags)
+            const tag_names = postInput.tags.map(tag=>tag.name.toLowerCase());
             // const duplicate = postInput.ta
-            if (currentTag.length === 0 || postInput.tags.length >= 5) {
+            if (currentTag.length === 0 || postInput.tags.length >= 5 || tag_names.includes(currentTag.toLowerCase())) {
                 setCurrentTag("");
                 return;
             }
-            console.log("curr tag:", currentTag);
+            // console.log("curr tag:", currentTag);
+            //must check i fcontains
+            
+
 
             setPostInput((prev) => ({
                 ...prev,
                 tags: [
                     ...prev.tags,
-                    { name: currentTag }
+                    { name: currentTag.toLowerCase() }
                 ]
             }))
             setCurrentTag("");
@@ -79,14 +82,14 @@ const CreatePostMain = ({ setPostInput, postInput, setEditMode }: createPostProp
             >
                 <label htmlFor="title">
                     <Icon icon="tabler:bulb" width="16" height="16" />
-                    Title:
+                    Title ({postInput.title.length}/150)
                 </label>
                 <input
                     type="text"
                     name="title"
                     // required
                     minLength={1}
-                    maxLength={200} //TODO change backend limit to 200
+                    maxLength={150} //TODO change backend limit to 200
                     onChange={changeTitle}
                     value={postInput.title}
                     placeholder="eg. My favourite Cats"
@@ -109,7 +112,7 @@ const CreatePostMain = ({ setPostInput, postInput, setEditMode }: createPostProp
 
                 <label htmlFor="tags">
                     <Icon icon="mdi:tag" />
-                    Tags (optional)
+                    Tags ({postInput.tags.length}/5)
                 </label>
                 <input
                     ref={tagInput}

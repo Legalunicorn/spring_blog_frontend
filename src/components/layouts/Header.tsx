@@ -18,14 +18,17 @@ const Header = () => {
                 <img src={logo} alt="" />
                 <p>AlgoRice </p>
 
-            
             </div>
 
             <div className="account">
                 {user 
                 ?<>
-                    <p onClick={()=>navigate("/posts/create")}>x</p>
-                    <Icon icon="iconamoon:profile-light" width="24" height="24" />
+                    <Icon icon="famicons:create-outline" width="24" height="24" 
+                        onClick={()=>navigate("/posts/create")}
+                    />
+                    <img src={user.profilePicture} alt=""
+                        onClick={()=>navigate(`/users/${user.username}`)}
+                     />
                     <Icon icon="material-symbols:logout" width="24" height="24" />
                 </>
                 :<>

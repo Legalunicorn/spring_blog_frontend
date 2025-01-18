@@ -17,13 +17,13 @@ import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 const PostMain = () => {
     var { postId } = useParams();
     const myFetch = useFetch();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const {user} = useAuthContext();
     const {
         data,
         isLoading,
         isError,
-        // error
+        error
     } = useQuery<PostType>({
         queryKey: ["post", Number(postId)],
         queryFn: () => myFetch(`/posts/${postId}`)
@@ -34,6 +34,8 @@ const PostMain = () => {
     //TODO handle the loading properlty
     if (isLoading) return <>Loading</>;
     if (isError || data == undefined) return <>Error</>
+
+    
 
     // const formattedDate = format(data.createdOn, "Lo LLL yyyy");
     // data.thumbnail = THUMBNAIL_DEFAULT;

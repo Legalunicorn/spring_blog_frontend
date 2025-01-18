@@ -20,12 +20,19 @@ const PostCard = ({ post }: PostCardProps) => {
     const formattedDate = format(post.createdOn, "LLL yyyy");
     const navigate = useNavigate();
 
+    const visitProfile =(e:React.MouseEvent<HTMLDivElement>)=>{
+        e.stopPropagation();
+        navigate(`/users/${post.author.username}`)
+    }
+
     return (
         <article onClick={()=>navigate(`/posts/${post.id}`)} className="post-card">
 
             <div className="post-data">
                 <section className="post-main">
-                    <div className="post-author" >
+                    <div className="post-author"
+                        onClick={visitProfile}
+                    >
                         <img className="pfp" src={post.author.profilePicture ? post.author.profilePicture : PFP_DEFAULT} alt="" />
                         <p>{post.author.username}</p>
 
@@ -33,8 +40,8 @@ const PostCard = ({ post }: PostCardProps) => {
 
                     <p  className="post-title">{post.title}</p>
                     <div className="post-tags">
-                        {post.tags?.map((tag) => (
-                            <p>{tag.name}</p>
+                        {post.tags?.map((tag,idx) => (
+                            <p key={idx}>{tag.name}</p>
                         ))}
                     </div>
                 </section>

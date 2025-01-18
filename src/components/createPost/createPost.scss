@@ -125,6 +125,7 @@
             padding: 2rem;
             background-color: var(--color-neutral-5);
             width: 80%;
+            min-height: 450px;
             height:60vh;
 
             input{
@@ -190,6 +191,7 @@
         align-items: center;
         
         Form{
+            min-height: 450px;
             height: 60vh;
             border-radius: 0.75rem;
             background-color: var(--color-neutral-5);

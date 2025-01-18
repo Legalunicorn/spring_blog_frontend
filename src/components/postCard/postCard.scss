@@ -64,6 +64,7 @@
             gap: 0.5rem;
             align-items: center;
             margin: 0.5rem 0;
+            cursor:pointer;
 
             svg{
                 margin-right: 0.5rem;
@@ -76,10 +77,12 @@
                 object-fit: cover;
                 aspect-ratio: 1;
                 border-radius: 0.5rem;
+                
             }
 
             &:hover{
                 color: var(--color-primary);
+                text-decoration: underline;
                 // border-bottom: 1px solid var(--color-primary);
             }
 
