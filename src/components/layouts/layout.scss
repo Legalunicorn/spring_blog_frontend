@@ -1,11 +1,9 @@
 #header{
     background-color: var(--color-neutral-6);
-    padding: 1rem 2.5rem;
-    width: 100%;
+    padding: 1rem 10%;
+    width: 100vw !important;
     display:flex;
-    max-width: var(--max-width);
     align-items: center;
-
 
 
     .brand{

@@ -1,5 +1,6 @@
 
 .auth-page{
+    width: 100%;
 
     .backdrop{
 
@@ -7,8 +8,9 @@
         left:0;
         position: fixed;
         // overflow: hidden;
-        width: 100%;
+        // width: 10000px;
         height: 100vh;
+        // border:100px solid lime;
     }
 
 

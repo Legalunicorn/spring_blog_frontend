@@ -6,7 +6,7 @@
   color: var(--color-text);
   background-color: var(--color-bg);
 
-  --max-width: 1300px;
+  // --max-width: 1300px;
 
   --color-primary: #88eead;
   --color-secondary: rgb(22, 116, 151);
@@ -57,7 +57,7 @@ button{
 .page{
   min-height: 100vh;
   width: 100%;
-  max-width: var(--max-width);
+  // max-width: var(--max-width);
 }
 
 input,textarea,button{

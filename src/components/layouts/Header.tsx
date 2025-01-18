@@ -5,8 +5,13 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link, useNavigate } from "react-router";
 const Header = () => {
 
-    const {user} = useAuthContext();
+    const {user,dispatch} = useAuthContext();
     const navigate = useNavigate();
+
+    const handleLogout=()=>{
+        dispatch({type:"LOGOUT"});
+        localStorage.removeItem("user")
+    }
 
 
 
@@ -29,10 +34,11 @@ const Header = () => {
                     <img src={user.profilePicture} alt=""
                         onClick={()=>navigate(`/users/${user.username}`)}
                      />
-                    <Icon icon="material-symbols:logout" width="24" height="24" />
+                    <Icon icon="material-symbols:logout" width="24" height="24" 
+                        onClick={handleLogout}
+                    />
                 </>
                 :<>
-                    <p onClick={()=>navigate("/posts/create")}>x</p>
                     <Link to={"/auth/register"}> Register</Link>
                     <p>{" | "}</p>
                     <Link to={"/auth/register"}> Login</Link>
