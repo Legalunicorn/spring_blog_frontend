@@ -8,6 +8,8 @@ import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useFetch } from "../../helpers/hooks/useFetch";
 import { useNavigate } from "react-router";
+import Markdown from "react-markdown";
+import MarkdownPreview from "../Markdown/MarkdownPreview";
 
 // type PostPreviewableType = {
 //     data: PostType
@@ -102,7 +104,7 @@ const PostPreviewable = ({ data, isLive }: props) => {
                     }}
                 >
                     <div className="author">
-                        <img className="pfp" src={data.author.profilePicture ? data.author.profilePicture : PFP_DEFAULT} alt="" />
+                        <img className="pfp" src={data.author && data.author.profilePicture ? data.author.profilePicture : PFP_DEFAULT} alt="" />
                         <div>
                             <span>{data.author.username}</span>
                             <p>
@@ -118,7 +120,8 @@ const PostPreviewable = ({ data, isLive }: props) => {
                 }
             </section>
             <section className="post-body">
-                {data.body}
+                {/* {data.body} */}
+                <MarkdownPreview body={data.body}/>
             </section>
         </>
     );

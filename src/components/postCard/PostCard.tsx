@@ -15,7 +15,7 @@ type PostCardProps = {
 const PostCard = ({ post }: PostCardProps) => {
 
     // if (post.thumbnail==null){
-    if (post.thumbnail==="") post.thumbnail= THUMBNAIL_DEFAULT;
+    // if (post.thumbnail==="") post.thumbnail= THUMBNAIL_DEFAULT;
     // }
     const formattedDate = format(post.createdOn, "LLL yyyy");
     const navigate = useNavigate();
@@ -24,6 +24,8 @@ const PostCard = ({ post }: PostCardProps) => {
         e.stopPropagation();
         navigate(`/users/${post.author.username}`)
     }
+
+    console.log("hi",post);
 
     return (
         <article onClick={()=>navigate(`/posts/${post.id}`)} className="post-card">
