@@ -1,6 +1,5 @@
 import Markdown from "react-markdown";
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { xonokai } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./markdownPreview.scss"
 
