@@ -73,6 +73,7 @@ const CreatePost = () => {
         }),
         onSuccess: ()=>{
             queryClient.invalidateQueries({queryKey:["feed"]});
+            queryClient.invalidateQueries({queryKey:["posts"]});
             toast.success("Post created!")
             navigate("/home")
         },

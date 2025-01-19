@@ -41,7 +41,7 @@ const PostCard = ({ post }: PostCardProps) => {
                     <p  className="post-title">{post.title}</p>
                     <div className="post-tags">
                         {post.tags?.map((tag,idx) => (
-                            <p key={idx}>{tag.name}</p>
+                            <p key={idx} onClick={()=>navigate(`/tags/${tag.name}`)}>{tag.name}</p>
                         ))}
                     </div>
                 </section>

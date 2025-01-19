@@ -8,6 +8,7 @@ import Layout from "../../components/layouts/Layout";
 import PostMain from "../../components/postMain/PostMain";
 import CreatePost from "../../components/createPost/CreatePost";
 import { ProtectedRoute } from "./ProtectedRoute";
+import PostByTags from "../../pages/postByTags/PostByTags";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
             {
                 path:"users/:username",
                 element: <UserProfile/>
+            },
+            {
+                path:"/tags/:tagName",
+                element: <PostByTags/>
             }
         ]
     }

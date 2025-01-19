@@ -89,7 +89,11 @@ const PostPreviewable = ({ data, isLive }: props) => {
                     </span>
                     
                     {data.tags?.map((tag) => (
-                        <p>{tag.name}</p>
+                        <p
+                            onClick={()=>{
+                                if (isLive) navigate(`/tags/${tag.name}`)
+                            }}
+                        >{tag.name}</p>
                     ))}
                 </div>
                 <div className="post-author"

@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import { useFetch } from "../../helpers/hooks/useFetch";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { PostSummary } from "../../helpers/types";
 import PostCard from "../../components/postCard/PostCard";
 import "./home.scss"
+import HomeTags from "./HomeTags";
 
 
 type feedType= "recent" | "top";
@@ -13,20 +14,17 @@ type feedType= "recent" | "top";
 const Home = () => {
 
     const myFetch = useFetch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [sort,setSort] = useState<feedType>("recent");
 
-    const {
-        isLoading,
-        isError,
-        data,
-        error
-    } = useQuery<PostSummary[]>({
+    const postQuery = useQuery<PostSummary[]>({
         queryKey: ["feed",sort],
         queryFn: ()=> myFetch(`/posts?sort=${sort}`)
     })
 
-    console.log("HOME: ",data)
+
+
+    console.log("HOME: ",postQuery.data)
 
     //Side page for : tags
     return (
@@ -42,15 +40,16 @@ const Home = () => {
                         className={sort=="recent"?"selected":""}
                     >Recent</button>
                 </section>
-                {isLoading || data==undefined
+                {postQuery.isLoading || postQuery.data==undefined
                 ?<p>loading</p>
-                :data.map(post=>(
+                :postQuery.data.map(post=>(
                     <PostCard key={post.id} post={post}/>
                 ))
                 }
             </div>
             <div className="home-side">
-                Tags
+                <p>Tags</p>
+                <HomeTags/>
             </div>
         </div>
     );

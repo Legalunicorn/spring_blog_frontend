@@ -2,6 +2,7 @@ import "./comment.scss"
 import type { Comment } from "../../helpers/types";
 import {format,formatDistanceToNow} from "date-fns";
 import { PFP_DEFAULT } from "../../helpers/constants";
+import { useNavigate } from "react-router";
 
 
 type CommentProps  = {
@@ -11,6 +12,7 @@ type CommentProps  = {
 const Comment = ({comment}:CommentProps) => {
     // const formattedDate = formatDistanceToNow(comment.createdOn);
     const formattedDate = format(comment.createdOn,"Lo LLL yyyy");
+    const navigate = useNavigate();
 
     console.log(comment.author.profilePicture)
     return (
@@ -18,7 +20,9 @@ const Comment = ({comment}:CommentProps) => {
             <div className="comment-author">
                 <img src={comment.author.profilePicture?comment.author.profilePicture:PFP_DEFAULT} alt="" />
                 <div className="comment-meta">
-                    <p>{comment.author.username}</p>
+                    <p
+                        onClick={()=>navigate(`/users/${comment.author.username}`)}
+                    >{comment.author.username}</p>
                     <p>{formattedDate}</p>
                 </div>
 

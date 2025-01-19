@@ -10,6 +10,15 @@
         align-items: center;
 
         .comment-meta {
+
+            p:first-child{
+                // color:red;
+                font-weight:bold;
+                cursor:pointer;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
             p:last-child {
                 font-size: 0.75rem;
                 color: var(--color-neutral-2);

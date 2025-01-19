@@ -39,9 +39,32 @@
     }
 
     .home-side{
-        padding: 2rem;
+        padding: 3rem 2rem;
         width: 30%;
         // border: 1px solid lime;
+
+        > p:first-of-type{
+            font-weight: bold;
+            margin-bottom:1rem;
+        }
+
+        .home-tags{
+            // border: 1px solid red;
+            display:flex;
+            gap: 0.5rem; 
+            flex-wrap: wrap;
+
+            > p{
+                padding: 0.15rem 0.5rem;
+                background-color: var(--color-neutral-4);
+                border-radius:0.5rem;
+                cursor: pointer;
+                &:hover{
+                    text-decoration: underline;
+                }
+
+            }
+        }
     }
 }
 
