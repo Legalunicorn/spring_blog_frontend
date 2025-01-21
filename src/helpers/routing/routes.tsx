@@ -9,6 +9,7 @@ import PostMain from "../../components/postMain/PostMain";
 import CreatePost from "../../components/createPost/CreatePost";
 import { ProtectedRoute } from "./ProtectedRoute";
 import PostByTags from "../../pages/postByTags/PostByTags";
+import EditProfile from "../../pages/EditProfile/EditProfile";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
                     {
                         path:"posts/create",
                         element:<CreatePost/>
+                    },
+                    {
+                        path:"edit-profile",
+                        element:<EditProfile/>
                     }
                 ]
             },

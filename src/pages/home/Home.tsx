@@ -18,7 +18,7 @@ const Home = () => {
     const [sort,setSort] = useState<feedType>("recent");
 
     const postQuery = useQuery<PostSummary[]>({
-        queryKey: ["feed",sort],
+        queryKey: ["posts","feed",sort],
         queryFn: ()=> myFetch(`/posts?sort=${sort}`)
     })
 

@@ -32,7 +32,7 @@ const Header = () => {
                         onClick={()=>navigate("/posts/create")}
                     />
                     <img src={user.profilePicture} alt=""
-                        onClick={()=>navigate(`/users/${user.username}`)}
+                        onClick={()=>navigate(`/edit-profile`)}
                      />
                     <Icon icon="material-symbols:logout" width="24" height="24" 
                         onClick={handleLogout}
