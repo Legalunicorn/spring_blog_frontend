@@ -10,6 +10,7 @@ import { useFetch } from "../../helpers/hooks/useFetch";
 import { useNavigate } from "react-router";
 import Markdown from "react-markdown";
 import MarkdownPreview from "../Markdown/MarkdownPreview";
+import PostOptions from "./PostOptions";
 
 // type PostPreviewableType = {
 //     data: PostType
@@ -73,7 +74,11 @@ const PostPreviewable = ({ data, isLive }: props) => {
             <section className="post-main">
                 <p className="post-title">{data?.title}</p>
 
+                
                 <div className="post-tags">
+                    <PostOptions post={data}/>
+
+
                     <span className="like_count">
                         <Icon
                             icon="stash:thumb-up-light"
@@ -89,6 +94,7 @@ const PostPreviewable = ({ data, isLive }: props) => {
                         />                        
                         {data.like_count}
                     </span>
+                    
                     
                     {data.tags?.map((tag) => (
                         <p
