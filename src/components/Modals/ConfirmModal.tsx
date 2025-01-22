@@ -1,5 +1,5 @@
 import "./modal.scss"
-
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 //Confirm,
 
@@ -21,9 +21,12 @@ const ConfirmModal = ({
     return (
         <div className="modal">
             <div className="modal-background">
-
             </div>
+
             <div className="modal-main">
+                <Icon className="close-button" icon="gridicons:cross" width="20" height="20" 
+                    onClick={onClose}
+                />
                 <section className="modal-header">
                     <p>{title}</p>
                 </section>
@@ -37,7 +40,7 @@ const ConfirmModal = ({
                     </span>
 
                     <span
-                        onClick={()=>{
+                        onClick={() => {
                             onConfirm();
                             onClose();
                         }}

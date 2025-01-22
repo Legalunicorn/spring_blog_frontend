@@ -46,6 +46,42 @@
             color: var(--color-text);
         }
     }
+
+    .options-container{
+        
+        position: relative;
+        display: inline-block;
+
+        .user-options{
+            animation: appear 0.2s linear;
+            border-radius:0.5rem;
+            background-color: var(--color-neutral-5);
+            margin:0.25rem;
+            overflow:hidden;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            right:5%;
+            width:max-content;
+            box-shadow: -5px 5px 5px #111113;
+            border:1px solid var(--color-neutral-4);
+
+            > p{
+                gap:0.25rem;
+                display: flex;
+                width:100%;
+                align-items: center;
+                padding: 0.75rem;
+                cursor:pointer;
+
+                &:hover{
+                    color:var(--color-neutral-1);
+                    background-color: var(--color-bg);
+                }
+            }
+
+        }
+    }
 }
 
 

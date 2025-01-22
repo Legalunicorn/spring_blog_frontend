@@ -175,11 +175,6 @@
             
         }
 
-        // &:hover{
-        //     color: var(--color-primary);
-        // }
-
-
     }
 
     
@@ -192,7 +187,9 @@
 
     .option-box{
         z-index:5;
-        --option-bg: var(--color-neutral-4);
+        --option-bg: var(--color-neutral-5);
+        border:1px solid var(--color-neutral-4);
+        color: var(--color-neutral-2);
         position: absolute;
         top:0;
         left:100%;
@@ -200,6 +197,7 @@
         background-color: var(--option-bg);
         box-shadow: 4px 4px 5px var(--color-neutral-6);
         overflow: hidden;
+        box-shadow: -5px 5px 5px #111113;
 
 
         > p{
@@ -211,8 +209,8 @@
         
             border-radius: 0;
             &:hover{
-            
-                background-color: var(--color-neutral-5);
+                color:var(--color-neutral-1);
+                background-color: var(--color-neutral-6);
             }
         }
 
