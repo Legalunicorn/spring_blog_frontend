@@ -43,6 +43,8 @@ const PostMain = () => {
         data.thumbnail = THUMBNAIL_DEFAULT;
     }
 
+    console.log("post main data: ",data)
+
     return (
         <div className="post-page page">
             <PostPreviewable

@@ -1,6 +1,7 @@
 .comment-card {
     padding: 1.5rem 0;
     border-bottom: 1px solid var(--color-neutral-5);
+    position: relative;
 
 
 
@@ -44,6 +45,42 @@
 
     .comment-body {
         margin: 1rem 0;
+    }
+
+    .comment-options{
+        // border:1px solid red;
+        position: absolute;
+        top:20%;
+        left:90%;
+
+
+        .options-container{
+            position: absolute;
+            color: var(--color-neutral-2);
+            border:1px solid var(--color-neutral-3);
+            top:0;
+            right:105%;
+            border-radius:0.25rem;
+            background-color: var(--color-neutral-5);
+            box-shadow: -5px 5px 5px #111;
+            
+            
+            >p{
+                width:max-content;
+                display: flex;
+                gap:0.25rem;
+                align-items: center;
+                padding: 0.5rem 1rem;
+                cursor:pointer;
+                transition: 0.2s ease-in-out;
+
+                &:hover{
+                    color: var(--color-text);
+                }
+            }
+
+
+        }
     }
 
 }

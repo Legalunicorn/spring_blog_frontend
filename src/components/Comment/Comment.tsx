@@ -1,8 +1,10 @@
 import "./comment.scss"
 import type { Comment } from "../../helpers/types";
-import {format,formatDistanceToNow} from "date-fns";
+import {format} from "date-fns";
 import { PFP_DEFAULT } from "../../helpers/constants";
 import { useNavigate } from "react-router";
+import { useAuthContext } from "../../helpers/hooks/useAuthContext";
+import CommentOptions from "./CommentOptions";
 
 
 type CommentProps  = {
@@ -10,11 +12,12 @@ type CommentProps  = {
 }
 
 const Comment = ({comment}:CommentProps) => {
-    // const formattedDate = formatDistanceToNow(comment.createdOn);
     const formattedDate = format(comment.createdOn,"Lo LLL yyyy");
     const navigate = useNavigate();
+    const {user} = useAuthContext();
 
     console.log(comment.author.profilePicture)
+    console.log("post id" ,comment.postId);
     return (
         <article className="comment-card">
             <div className="comment-author">
@@ -30,6 +33,12 @@ const Comment = ({comment}:CommentProps) => {
             <div className="comment-body">
                 {comment.body}
             </div>
+            {comment.id && user && user.username==comment.author.username &&
+                <CommentOptions
+                    commentId={comment.id}
+                    postId={comment.postId}
+                />
+            }
         </article>
     );
 }

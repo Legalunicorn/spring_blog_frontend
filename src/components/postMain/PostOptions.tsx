@@ -41,7 +41,7 @@ const PostOptions = ({ post }: OptionProps) => {
         }),
         onSuccess:()=>{
             //Invalidate: [posts], [userProfile],[post,Id],
-            toast.info("Your post has been deleted")
+            toast.success("Your post has been deleted")
             queryClient.invalidateQueries({queryKey:["posts"]})
             queryClient.invalidateQueries({queryKey:["userProfile",post.author.id]})
             queryClient.invalidateQueries({queryKey:["posts",post.id]})

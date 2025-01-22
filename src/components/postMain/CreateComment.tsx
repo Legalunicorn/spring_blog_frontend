@@ -21,6 +21,8 @@ const CreateComment = ({postId}:{postId:number}) => {
     const [commentInput, setCommentInput] = useState<string>("");
     const myFetch = useFetch();
 
+    console.log("postId given to create comment: ",postId)
+
 
     const createCommentMutation = useMutation({
         mutationFn:(commentInput:string)=>myFetch("/comments",{

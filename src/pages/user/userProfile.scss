@@ -61,7 +61,8 @@
         
 
         &:hover{
-            box-shadow: -7px 7px 0 var(--color-neutral-1),-2px 3px 5px var(--color-neutral-6);
+            border-radius:0;
+            box-shadow: -10px 10px 0 rgba(8, 8, 8, 0.596),-2px 3px 5px var(--color-neutral-6);
             background-color: var(--color-bg);
         }
     }
