@@ -6,7 +6,6 @@ import Login from "../../pages/auth/Login";
 import Home from "../../pages/home/Home";
 import Layout from "../../components/layouts/Layout";
 import PostMain from "../../components/postMain/PostMain";
-import CreatePost from "../../components/createPost/CreatePost";
 import { ProtectedRoute } from "./ProtectedRoute";
 import PostByTags from "../../pages/postByTags/PostByTags";
 import EditProfile from "../../pages/EditProfile/EditProfile";

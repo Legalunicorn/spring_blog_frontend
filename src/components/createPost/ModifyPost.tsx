@@ -1,6 +1,5 @@
-import { Form, useNavigate } from "react-router";
 import "./createPost.scss"
-import { useState,useRef } from "react";
+import { useState } from "react";
 import CreatePostMain from "./CreatePostMain";
 import ViewOptions from "./ViewOption";
 import CreatePostBody from "./CreatePostBody";
@@ -8,8 +7,7 @@ import { PFP_DEFAULT } from "../../helpers/constants";
 import type { PostPreviewableType, PostSummary, User } from "../../helpers/types";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import PreviewCreatePost from "./PreviewCreatePost";
-import { useFetch } from "../../helpers/hooks/useFetch";
-import { useMutation, UseMutationResult, useQueryClient } from "@tanstack/react-query";
+import { UseMutationResult } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 export type InputMode = "main" | "body" | "preview"
 
@@ -17,8 +15,6 @@ export type InputMode = "main" | "body" | "preview"
 type CreatePostProps = {
     post?: PostSummary,
     mutationFn: UseMutationResult<any, Error, PostPreviewableType, unknown>,
-    // postInput: PostPreviewableType,
-    // setPostInput: React.Dispatch<React.SetStateAction<PostPreviewableType>>
     
 }
 
@@ -27,11 +23,7 @@ const ModifyPost = ({
     mutationFn,
 }:CreatePostProps) => {
     const {user}= useAuthContext() as {user:User}; //Auth validation
-    // const {user} = useAuthContext();
 
-
-    const navigate = useNavigate();
-    // const queryClient = useQueryClient();
     const [postInput, setPostInput] = useState<PostPreviewableType>({
         title: post? post.title:"",
         thumbnail:post? post.thumbnail:"",
@@ -47,7 +39,7 @@ const ModifyPost = ({
 
     const [editMode, setEditMode] = useState<InputMode>("body");
 
-    const handleSubmit = async(e:React.FormEvent<HTMLButtonElement>,draft:boolean)=>{
+    const handleSubmit = async(draft:boolean)=>{
         const data:any = postInput
         //Not needed for form submission
         delete data.author;
@@ -72,26 +64,6 @@ const ModifyPost = ({
         mutationFn.mutate(data);
     }
 
-    // }
-    // const createPostMutation = useMutation({
-    //     mutationFn:(postInput:PostPreviewableType)=>myFetch("/posts",{
-    //         method:"POST",
-    //         body: JSON.stringify({
-    //             ...postInput,
-    //             tags:postInput.tags.map(tag=>tag.name)
-    //         }),
-    //     }),
-    //     onSuccess: ()=>{
-    //         queryClient.invalidateQueries({queryKey:["feed"]});
-    //         queryClient.invalidateQueries({queryKey:["posts"]});
-    //         toast.success("Post created!")
-    //         navigate("/home")
-    //     },
-    //     onError(error,variables,context){
-    //         console.log(error.message);
-    //     }
-    // })
-
 
     return (
         <div className="page create-post-page">
@@ -108,14 +80,12 @@ const ModifyPost = ({
                     setPostInput={setPostInput}
                     postInput={postInput}
                     setEditMode={setEditMode}
-                    // formRef={mainFormRef}
                 />
                 :editMode=="body"
                 ? <CreatePostBody
                     setPostInput={setPostInput}
                     postInput={postInput}
                     setEditMode={setEditMode}
-                    // formRef={bodyFormRef}
                   />
                 : <PreviewCreatePost
                      post={postInput}
@@ -125,10 +95,10 @@ const ModifyPost = ({
             }
             <section className="saving-options">
                 <button
-                    onClick={(e)=>handleSubmit(e,true)}
+                    onClick={()=>handleSubmit(true)}
                 >Draft</button>
                 <button
-                    onClick={(e)=>handleSubmit(e,false)}
+                    onClick={()=>handleSubmit(false)}
                 >Post</button>
             </section>
 

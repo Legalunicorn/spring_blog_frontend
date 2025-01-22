@@ -1,5 +1,4 @@
 import "./postMain.scss"
-import type { PostType } from "../../helpers/types";
 import { format } from "date-fns";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -8,7 +7,6 @@ import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useFetch } from "../../helpers/hooks/useFetch";
 import { useNavigate } from "react-router";
-import Markdown from "react-markdown";
 import MarkdownPreview from "../Markdown/MarkdownPreview";
 import PostOptions from "./PostOptions";
 
@@ -27,7 +25,6 @@ const PostPreviewable = ({ data, isLive }: props) => {
     const queryClient = useQueryClient();
     const formattedDate = format(data.createdOn, "Lo LLL yyyy");
     const PFP_DEFAULT = "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
-    const DEFAULT_THUMBNAIL = "https://thumbs.dreamstime.com/b/rice-crop-symbol-rice-wheat-ears-design-element-agriculture-grain-colorful-vector-illustration-rice-crop-symbol-rice-wheat-129367791.jpg";
     const { user } = useAuthContext();
 
 

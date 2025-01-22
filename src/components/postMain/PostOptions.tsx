@@ -25,9 +25,6 @@ const PostOptions = ({ post }: OptionProps) => {
     const queryClient = useQueryClient();
     const myFetch = useFetch();
 
-    const handleEdit=()=>{
-        //create a page to edit 
-    }
 
     const handleDelete=()=>{
         //Create a cancl-confirm model 

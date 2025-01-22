@@ -5,20 +5,16 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
 
-import { PostPreviewableType, PostType, User } from "../../helpers/types";
+import { PostPreviewableType, PostType } from "../../helpers/types";
 import { useFetch } from "../../helpers/hooks/useFetch";
-import { useEffect, useState } from "react";
-import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import { toast } from "react-toastify";
 import ModifyPost from "../../components/createPost/ModifyPost";
-import { PFP_DEFAULT } from "../../helpers/constants";
 
 const EditPost = () => {
 
     const queryClient = useQueryClient();
     const {postId} = useParams();
     const myFetch = useFetch();
-    const {user} = useAuthContext() as {user:User};
     const navigate = useNavigate();
 
     const {data:post,isLoading,isError} = useQuery<PostType>({
