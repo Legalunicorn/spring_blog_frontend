@@ -215,6 +215,14 @@
                 background-color: var(--color-neutral-5);
             }
         }
+
+
+        > p:nth-of-type(2){
+            color:rgb(212,56,56);
+        }
+        // > p:nth-of-type(2) > svg{
+        //     color:rgb(212, 56, 56);
+        // }
     }
 }
 

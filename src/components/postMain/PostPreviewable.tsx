@@ -76,7 +76,9 @@ const PostPreviewable = ({ data, isLive }: props) => {
 
                 
                 <div className="post-tags">
+                    {isLive && user && user.username==data.author.username &&
                     <PostOptions post={data}/>
+                    }
 
 
                     <span className="like_count">
