@@ -10,6 +10,8 @@ import CreatePost from "../../components/createPost/CreatePost";
 import { ProtectedRoute } from "./ProtectedRoute";
 import PostByTags from "../../pages/postByTags/PostByTags";
 import EditProfile from "../../pages/EditProfile/EditProfile";
+import CreatePostPageWrapper from "../../components/createPost/CreatePostPageWrapper";
+import EditPost from "../../pages/EditPost/EditPost";
 
 const router = createBrowserRouter([
     {
@@ -46,11 +48,16 @@ const router = createBrowserRouter([
                 children:[
                     {
                         path:"posts/create",
-                        element:<CreatePost/>
+                        // element:<CreatePost/>
+                        element:<CreatePostPageWrapper/>
                     },
                     {
                         path:"edit-profile",
                         element:<EditProfile/>
+                    },
+                    {
+                        path:"posts/:postId/edit",
+                        element:<EditPost/>
                     }
                 ]
             },

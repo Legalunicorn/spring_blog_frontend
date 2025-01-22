@@ -99,7 +99,7 @@ const PostPreviewable = ({ data, isLive }: props) => {
                     
                     
                     {data.tags?.map((tag) => (
-                        <p
+                        <p key={tag.name}
                             onClick={()=>{
                                 if (isLive) navigate(`/tags/${tag.name}`)
                             }}

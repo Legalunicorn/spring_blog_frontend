@@ -5,51 +5,44 @@ import CreatePostMain from "./CreatePostMain";
 import ViewOptions from "./ViewOption";
 import CreatePostBody from "./CreatePostBody";
 import { PFP_DEFAULT } from "../../helpers/constants";
-import type { PostPreviewableType, User } from "../../helpers/types";
+import type { PostPreviewableType, PostSummary, User } from "../../helpers/types";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import PreviewCreatePost from "./PreviewCreatePost";
 import { useFetch } from "../../helpers/hooks/useFetch";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, UseMutationResult, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 export type InputMode = "main" | "body" | "preview"
 
 
-//How do i abstract this out? 
-/*
-I cant use "createPostMutation"
+type CreatePostProps = {
+    post?: PostSummary,
+    mutationFn: UseMutationResult<any, Error, PostPreviewableType, unknown>,
+    // postInput: PostPreviewableType,
+    // setPostInput: React.Dispatch<React.SetStateAction<PostPreviewableType>>
+    
+}
 
-> abstract it out ?
-
-
-issue 2: postInput default? 
-
-
-takes in : post summary optional 
-
-props 
-post: postSummary?
-*/
-
-const CreatePost = () => {
+const ModifyPost = ({
+    post,
+    mutationFn,
+}:CreatePostProps) => {
     const {user}= useAuthContext() as {user:User}; //Auth validation
     // const {user} = useAuthContext();
 
 
     const navigate = useNavigate();
-    const myFetch = useFetch();
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
     const [postInput, setPostInput] = useState<PostPreviewableType>({
-        title: "",
-        thumbnail: "",
-        body: "",
-        tags: [],
-        //Static variables for the sake of previewing 
-        like_count:0,
+        title: post? post.title:"",
+        thumbnail:post? post.thumbnail:"",
+        body: post?post.body:"",
+        tags: post?post?.tags:[],
+        like_count:post?post.like_count:0,
         author:{
             username: user? user.username: "demo",
             profilePicture: user && user.profilePicture? user.profilePicture: PFP_DEFAULT
         },
-        createdOn: new Date().toISOString()
+        createdOn: post?post.createdOn:new Date().toISOString()
     })
 
     const [editMode, setEditMode] = useState<InputMode>("body");
@@ -75,28 +68,29 @@ const CreatePost = () => {
             toast.error("Post body must not exceed 50,000!");
             return;
         }
-        createPostMutation.mutate(data)
+        // createPostMutation.mutate(data)
+        mutationFn.mutate(data);
     }
 
     // }
-    const createPostMutation = useMutation({
-        mutationFn:(postInput:PostPreviewableType)=>myFetch("/posts",{
-            method:"POST",
-            body: JSON.stringify({
-                ...postInput,
-                tags:postInput.tags.map(tag=>tag.name)
-            }),
-        }),
-        onSuccess: ()=>{
-            queryClient.invalidateQueries({queryKey:["feed"]});
-            queryClient.invalidateQueries({queryKey:["posts"]});
-            toast.success("Post created!")
-            navigate("/home")
-        },
-        onError(error,variables,context){
-            console.log(error.message);
-        }
-    })
+    // const createPostMutation = useMutation({
+    //     mutationFn:(postInput:PostPreviewableType)=>myFetch("/posts",{
+    //         method:"POST",
+    //         body: JSON.stringify({
+    //             ...postInput,
+    //             tags:postInput.tags.map(tag=>tag.name)
+    //         }),
+    //     }),
+    //     onSuccess: ()=>{
+    //         queryClient.invalidateQueries({queryKey:["feed"]});
+    //         queryClient.invalidateQueries({queryKey:["posts"]});
+    //         toast.success("Post created!")
+    //         navigate("/home")
+    //     },
+    //     onError(error,variables,context){
+    //         console.log(error.message);
+    //     }
+    // })
 
 
     return (
@@ -143,4 +137,4 @@ const CreatePost = () => {
     );
 }
 
-export default CreatePost;
+export default ModifyPost;

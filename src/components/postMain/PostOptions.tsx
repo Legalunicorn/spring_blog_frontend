@@ -64,8 +64,10 @@ const PostOptions = ({ post }: OptionProps) => {
             />
             {isOpen && 
                 <div className="option-box">
-                    <p>
-                    <Icon icon="mdi:edit-outline" width="22" height="22" />
+                    <p onClick={()=>navigate(`/posts/${post.id}/edit`)}>
+                    <Icon icon="mdi:edit-outline" width="22" height="22"
+                        
+                     />
                         Edit
                     </p>
                     <p onClick={handleDelete}>
