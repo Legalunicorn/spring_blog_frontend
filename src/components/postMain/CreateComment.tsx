@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 //props maybe just post ID?
 
 //we
-const CreateComment = ({postId}:{postId:number}) => {
+const CreateComment = ({ postId }: { postId: number }) => {
 
     // const { user } = useAuthContext();
     const queryClient = useQueryClient();
@@ -24,41 +24,48 @@ const CreateComment = ({postId}:{postId:number}) => {
 
 
     const createCommentMutation = useMutation({
-        mutationFn:(commentInput:string)=>myFetch("/comments",{
-            method:"POST",
-            body:JSON.stringify({body: commentInput,post_id: postId})
+        mutationFn: (commentInput: string) => myFetch("/comments", {
+            method: "POST",
+            body: JSON.stringify({ body: commentInput, post_id: postId })
         }),
-        onSuccess:()=>{
+        onSuccess: () => {
             toast.success("Comment created!")
             setCommentInput("");
-            queryClient.invalidateQueries({queryKey:["post",postId]})
+            queryClient.invalidateQueries({ queryKey: ["post", postId] })
         },
-        onError(error){
+        onError(error) {
             toast.error(error.message);
         }
     })
-   
+
 
     return (
         <div className="create-comment">
             <Form
-                onSubmit={()=>createCommentMutation.mutate(commentInput)}
+                onSubmit={() => {
+                    if (commentInput.length==0){
+                        toast.error("Comment cannot be empty");
+                        return;
+                    }
+                    createCommentMutation.mutate(commentInput);
+                }
+                }
             >
                 <TextareaAutosize
                     name="comment"
                     value={commentInput}
-                    onChange={(e)=>setCommentInput(e.currentTarget.value)}
+                    onChange={(e) => setCommentInput(e.currentTarget.value)}
                     placeholder="Create a comment..."
                     minLength={1}
                     maxLength={500}
-                    
+
 
                 />
                 <div>
                     <span>{commentInput.length}/500</span>
                     <button type="submit">Submit</button>
                 </div>
-                
+
             </Form>
         </div>
     );

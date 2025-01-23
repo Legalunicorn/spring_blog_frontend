@@ -5,7 +5,6 @@
         color:var(--color-text) !important;
     }
     
-    // line-height: 1.5rem !important;
     li{
         padding-bottom: 0.5rem;
         margin-left: 2rem;
@@ -75,7 +74,10 @@
     }
 
     code{
-        
+        color: var(--color-secondary-80);
+        background-color: #3b3b3ba4;
+        border-radius: 0.25rem;
+        padding: 1px 3px;
         
     }
 
