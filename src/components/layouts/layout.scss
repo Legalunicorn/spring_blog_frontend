@@ -29,9 +29,11 @@
     img{
         justify-self: center;
         align-self: center;
-        width: 24px;
-        border-radius:24px;
+        width: 30px;
+        border-radius:30px;
         aspect-ratio: 1;
+        
+        cursor:pointer;
         
 
     }
@@ -45,12 +47,22 @@
         > svg:hover{
             color: var(--color-text);
         }
+
+
     }
 
     .options-container{
         
         position: relative;
         display: inline-block;
+
+        > img{
+            transition: 0.2s ease-in-out;
+            border :2px solid var(--color-bg);
+            &:hover{
+                border: 2px solid var(--color-neutral-1);
+            }
+        }
 
         .user-options{
             animation: appear 0.2s linear;

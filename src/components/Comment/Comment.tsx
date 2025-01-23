@@ -16,8 +16,6 @@ const Comment = ({comment}:CommentProps) => {
     const navigate = useNavigate();
     const {user} = useAuthContext();
 
-    console.log(comment.author.profilePicture)
-    console.log("post id" ,comment.postId);
     return (
         <article className="comment-card">
             <div className="comment-author">

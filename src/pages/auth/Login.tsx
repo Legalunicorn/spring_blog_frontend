@@ -41,12 +41,9 @@ const Login = () => {
                     password
                 })
             })
-            console.log(response);
             const data = await response.json(); 
-            console.log("data: ",data);
             setLoading(false);
             if (response.ok){
-                console.log("HII")
                 dispatch({type:"LOGIN",payload:data})
                 localStorage.setItem("user",JSON.stringify(data));
                 navigate("/home")
@@ -55,9 +52,7 @@ const Login = () => {
                 console.log(data.message);
             }
         } catch(err:any){
-            console.log("Failed to send request: Register");
             setLoading(false);
-            console.log(err);
             setError(err.message)
         }
     }

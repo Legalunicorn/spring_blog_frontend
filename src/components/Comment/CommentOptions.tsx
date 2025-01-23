@@ -17,7 +17,6 @@ const CommentOptions = (
     const deleteCommentMutation = useMutation({
         mutationFn:()=>myFetch(`/comments/${commentId}`,{method:"DELETE"}),
         onSuccess:()=>{
-            console.log("post ID: ",postId)
             queryClient.invalidateQueries({queryKey:["post",Number(postId)]});
             toast.success("Comment deleted successfully");
         },

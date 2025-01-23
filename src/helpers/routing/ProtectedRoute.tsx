@@ -1,10 +1,11 @@
 import { Navigate, Outlet } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Loader from "../../components/loader/Loader";
 
 export const ProtectedRoute = () => {
   const { loading, user } = useAuthContext();
   return loading ? (
-    <p>Loading</p>
+    <Loader loading={loading}/>
   ) : user ? (
     <Outlet />
   ) : (

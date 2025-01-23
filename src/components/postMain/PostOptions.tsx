@@ -27,8 +27,6 @@ const PostOptions = ({ post }: OptionProps) => {
 
 
     const handleDelete=()=>{
-        //Create a cancl-confirm model 
-        console.log("hi")
         setIsDeleteModalOpen(prev=>!prev);
         // takes
 

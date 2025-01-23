@@ -33,8 +33,6 @@ const PostPreviewable = ({ data, isLive,isDrafted }: props) => {
     const likeMutation = useMutation({
         mutationFn:(postId:string)=> myFetch(`/posts/${postId}/like`,{method:"PUT"}),
         onSuccess: ()=>{
-            console.log("BRO")
-            console.log("OIOIOI", ["post",Number(data.id)])
             queryClient.invalidateQueries({queryKey:["post",Number(data.id)]});
             queryClient.invalidateQueries({queryKey:["feed"]});
         },

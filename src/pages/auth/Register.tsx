@@ -61,7 +61,6 @@ const Register = () => {
                 
             }else{
                 setError(data.message);
-                console.log(data.message);
             }
         } catch(err:any){
             console.log("Failed to send request: Register");

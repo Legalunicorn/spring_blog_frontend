@@ -30,15 +30,15 @@ const AccountOptions = () => {
             />
             {isOpen &&
                 <div className="user-options">
-                    <p onClick={()=>navigate(`/users/${user.username}`)}>
+                    <p onClick={()=>{navigate(`/users/${user.username}`);setIsOpen(false)}}>
                     <Icon icon="gg:profile" width="24" height="24" />
                     View Profile
                     </p>
-                    <p onClick={()=>navigate("account/edit-profile")}>
+                    <p onClick={()=>{navigate("account/edit-profile");setIsOpen(false)}}>
                         <Icon icon="prime:user-edit" width="24" height="24" />
                         Edit Account
                     </p>
-                    <p onClick={()=>navigate("account/drafts")}>
+                    <p onClick={()=>{navigate("account/drafts");setIsOpen(false)}}>
                         <Icon icon="ri:draft-line" width="24" height="24" />
                         View Drafts
                     </p>

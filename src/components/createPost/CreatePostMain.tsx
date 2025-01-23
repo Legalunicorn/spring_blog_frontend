@@ -28,11 +28,7 @@ const CreatePostMain = ({ setPostInput, postInput, setEditMode }: createPostProp
             if (currentTag.length === 0 || postInput.tags.length >= 5 || tag_names.includes(currentTag.toLowerCase())) {
                 setCurrentTag("");
                 return;
-            }
-            // console.log("curr tag:", currentTag);
-            //must check i fcontains
-            
-
+            }            
 
             setPostInput((prev) => ({
                 ...prev,

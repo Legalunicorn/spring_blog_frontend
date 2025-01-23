@@ -21,7 +21,6 @@ const CreateComment = ({postId}:{postId:number}) => {
     const [commentInput, setCommentInput] = useState<string>("");
     const myFetch = useFetch();
 
-    console.log("postId given to create comment: ",postId)
 
 
     const createCommentMutation = useMutation({
@@ -32,7 +31,6 @@ const CreateComment = ({postId}:{postId:number}) => {
         onSuccess:()=>{
             toast.success("Comment created!")
             setCommentInput("");
-            console.log(["post",postId]);
             queryClient.invalidateQueries({queryKey:["post",postId]})
         },
         onError(error){

@@ -7,21 +7,10 @@ type NextButtonProps = {
     target: InputMode,
     formRef?: React.RefObject<HTMLFormElement>
 }
-const NextButton = ({setEditMode,target,formRef}:NextButtonProps) => {
+const NextButton = ({setEditMode,target}:NextButtonProps) => {
 
     const handleClick = ()=>{
 
-        // if (formRef){
-        //     e.preventDefault();
-        //     if (formRef.current && formRef.current.checkValidity()){
-                
-        //         console.log("FAIL!",formRef.current)
-        //         formRef.current.reportValidity();
-        //         return;
-        //     }
-        //     //make sure form is validated
-            
-        // }
         setEditMode(target);
     }
     return ( 

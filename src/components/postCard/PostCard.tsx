@@ -25,8 +25,6 @@ const PostCard = ({ post }: PostCardProps) => {
         navigate(`/users/${post.author.username}`)
     }
 
-    console.log("hi",post);
-
     return (
         <article onClick={()=>navigate(`/posts/${post.id}`)} className="post-card">
 

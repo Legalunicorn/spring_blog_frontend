@@ -23,10 +23,6 @@ const Home = () => {
         queryFn: () => myFetch(`/posts?sort=${sort}`)
     })
 
-
-
-    console.log("HOME: ", postQuery.data)
-
     //Side page for : tags
     return (
         <div className="home-page page">

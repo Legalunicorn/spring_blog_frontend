@@ -93,8 +93,9 @@ const CreatePost = () => {
             toast.success("Post created!")
             navigate("/home")
         },
-        onError(error,variables,context){
+        onError(error){
             console.log(error.message);
+            toast.error("An error has occured");
         }
     })
 
