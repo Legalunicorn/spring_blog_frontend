@@ -33,7 +33,7 @@ const Header = () => {
                 :<>
                     <Link to={"/auth/register"}> Register</Link>
                     <p>{" | "}</p>
-                    <Link to={"/auth/register"}> Login</Link>
+                    <Link to={"/auth/login"}> Login</Link>
                 </>
                 }
             </div>
