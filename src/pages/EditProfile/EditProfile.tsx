@@ -6,12 +6,13 @@ import { useState } from "react";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import { User } from "../../helpers/types";
 import { toast } from "react-toastify";
+import { AuthAction } from "../../helpers/context/AuthContext";
 
 
 const EditProfile = () => {
 
     const myFetch = useFetch();
-    const {user} = useAuthContext() as {user:User};
+    const {user,dispatch} = useAuthContext() as {user:User,dispatch:React.Dispatch<AuthAction>}
     const queryClient = useQueryClient();
     const navigate = useNavigate();
     const [url,setUrl] = useState<string>(user.profilePicture);
@@ -26,6 +27,12 @@ const EditProfile = () => {
             body:JSON.stringify({profilePicture:url,username:user.username})
         }),
         onSuccess: ()=>{
+            const newData:User={
+                profilePicture:url,
+                username:user.username,
+                token:user.token
+            }
+            dispatch({type:"EDIT_PROFILE",payload:newData})
             toast.success("Profile updated successfully");
             queryClient.invalidateQueries({queryKey:["post"]});
             queryClient.invalidateQueries({queryKey:["userProfile"]});

@@ -74,7 +74,9 @@ button{
   cursor:pointer;
 }
 
-
+img{
+  object-fit: cover;
+}
 #main{
   display:flex;
   flex-direction: column;

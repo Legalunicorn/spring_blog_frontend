@@ -23,9 +23,10 @@ interface AuthContextValue extends AuthState {
 }
 
 
- type AuthAction =
+export type AuthAction =
     | {type:"LOGIN";payload:User} //Define the payload to be a user 
     | {type:"LOGOUT"}
+    | {type:"EDIT_PROFILE",payload:User}
 
  export const AuthContext = createContext<AuthContextValue|undefined>(undefined);
 
@@ -43,6 +44,9 @@ interface AuthContextValue extends AuthState {
         }
         case "LOGOUT":{
             return {user: null}; //make the user null
+        }
+        case "EDIT_PROFILE":{
+            return {user:action.payload};
         }
         default:
             return state;

@@ -84,6 +84,7 @@ const Register = () => {
             if (response.ok){
                 dispatch({type:"LOGIN",payload:data})
                 localStorage.setItem("user",JSON.stringify(data));
+                navigate("/home");
 
                 
             }else{
