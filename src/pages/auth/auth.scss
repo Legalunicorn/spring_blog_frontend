@@ -7,27 +7,19 @@
         top:0;
         left:0;
         position: fixed;
-        // overflow: hidden;
-        // width: 10000px;
         height: 100vh;
-        // border:100px solid lime;
     }
 
 
     div.backdrop > div{
         animation: appear 2s ease-in;
-        // opacity: 0.7;
         border-radius: 75% 25%;
-        // background-image: url("../../assets/images/rice-bowl-logo.svg");
-        // background-repeat:repeat;
-        // background-size: 30px 30px;
         top:20%;
         left:20%;
         width: 100%;
         aspect-ratio: 1;
         position: fixed;
         z-index:1;
-        // box-shadow: -10px 10px 1rem var(--color-neutral-4),10px -10px 1rem var(--color-neutral-4);
 
         //from https://css-pattern.com/wavy-3d/
         --s: 70px; /* control the size*/
@@ -70,18 +62,18 @@
     background: linear-gradient(140deg, rgb(34, 37, 37) 0%, rgba(123,143,199,1) 100%); 
 
     section.form-container{
+        
         // opacity: 0;
         z-index:5;
         border-radius: 1rem;
         padding: 4rem 2rem;
         background-color: var(--color-neutral-4);
-        min-width: 400px;
+        // min-width: 400px;
         width: 500px;
-        max-width: 90%;
+        max-width: 90vw;
         box-shadow: -5px 5px 2rem #23292e, 5px 8px 1rem #272c31;
         display: flex;
         flex-direction: column;
-        // border: 2px solid var(--color-bg);
         animation: appear 0.5s ease-in !important;
         animation: fall 1s linear;
         
@@ -161,3 +153,10 @@
     }
 }
 
+
+@media only screen and (max-width:480px){
+
+    .auth-page{
+        padding:2rem;
+    }
+}

@@ -51,6 +51,12 @@
 
     }
 
+    a{
+        color:var(--color-neutral-2);
+        text-decoration: none;
+        cursor:pointer;
+    }
+
     .options-container{
         
         position: relative;
@@ -65,6 +71,7 @@
         }
 
         .user-options{
+            z-index:2;
             animation: appear 0.2s linear;
             border-radius:0.5rem;
             background-color: var(--color-neutral-5);

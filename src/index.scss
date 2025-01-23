@@ -86,3 +86,12 @@ button{
 a{
   text-decoration:none;
 }
+
+
+
+@media only screen and (max-width:400px){
+  :root{
+    font-size: 15px;
+  }
+
+}

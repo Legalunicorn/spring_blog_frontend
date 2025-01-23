@@ -67,3 +67,12 @@
         }
     }
 }
+
+@media only screen and (max-width:900px){
+    .profile-page{
+        .user-posts{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

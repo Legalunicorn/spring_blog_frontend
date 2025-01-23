@@ -35,22 +35,6 @@
         
         }
     }
-    // button.back{
-    //     display: flex;
-    //     justify-content: center;
-    //     gap:0.5rem;
-    //     width:fit-content;
-    //     margin-left:auto;
-    //     padding: 0.5rem 0.75rem;
-    //     border-radius: 0.25rem;
-    //     transition: 0.2s ease-in-out;
-
-    //     &:hover{
-    //         color: var(--color-bg);
-    //         background-color: var(--color-text);
-        
-    //     }        
-    // }
 
     Form{
         display:flex;
@@ -126,7 +110,6 @@
     section.create-post-main{
         display:flex;
         flex-direction: column;
-
         
         Form{
             margin: 0 auto 0 auto;
@@ -256,4 +239,13 @@
             }
         }
     }
+}
+
+@media only screen and (max-width:480px) {
+
+    .create-post-page{
+        padding: 0.25rem;
+    }
+
+    
 }

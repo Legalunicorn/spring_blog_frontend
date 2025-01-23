@@ -16,10 +16,11 @@
 
     }
 
-    section:nth-child(2){
-        .post-card{
-            
-        }
-    }
     
+}
+
+@media only screen and (max-width:480px){
+    .post-by-tags-page{
+        padding: 0 0.25rem;
+    }
 }

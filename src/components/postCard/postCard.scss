@@ -109,6 +109,7 @@
             gap:0.5rem;
 
             p{
+                font-size: 0.95rem;
                 border-radius: 0.75rem;
                 padding: 0.25rem 0.5rem;
                 cursor:pointer;
@@ -136,11 +137,20 @@
         }
 
         div.post-date{
-            // border:1px solid red;
             opacity: 0.9;
             padding :0.25rem 0.5rem;
             border-radius: 0.75rem;
             background-color: var(--color-neutral-4);
         }
+    }
+}
+
+@media only screen and (max-width:480px){
+    .post-card{
+        // border:1px solid red;
+        >img{
+            min-width: 50px;
+        }
+        
     }
 }
