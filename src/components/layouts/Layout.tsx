@@ -2,6 +2,8 @@ import { Outlet, useRouteError } from "react-router";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import Header from "./Header";
 import Footer from "./Footer";
+import NotFound from "./Error/NotFound";
+import StandardError from "./Error/StandardError";
 
 /**
  * Main layout component for the app
@@ -13,17 +15,21 @@ import Footer from "./Footer";
  */
 const Layout = () => {
 
-    const error = useRouteError();
+    const error:any = useRouteError();
+    const status = error?.status;
     const { loading } = useAuthContext();
-
+    
 
     return (
         <div id="main">
             <Header />
             {error
-                ? <p> ERROR </p>
-                :
-                loading
+                ? (
+                    <div className="page">
+                        {status == 404 ? <NotFound/> : <StandardError/> }
+                    </div>
+                )
+                : loading
                     ? "skibidi loading"
                     : <Outlet />
             }

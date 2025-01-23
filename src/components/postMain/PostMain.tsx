@@ -10,6 +10,8 @@ import PostPreviewable from "./PostPreviewable";
 import {THUMBNAIL_DEFAULT } from "../../helpers/constants";
 import CreateComment from "./CreateComment";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
+import StandardError from "../layouts/Error/StandardError";
+import Loader from "../loader/Loader";
 
 //Should be able 
 
@@ -32,13 +34,9 @@ const PostMain = () => {
 
 
     //TODO handle the loading properlty
-    if (isLoading) return <>Loading</>;
-    if (isError || data == undefined) return <>Error</>
+    if (isLoading) return <Loader loading={isLoading}/>
+    if (isError || data == undefined) return <StandardError/>
 
-    
-
-    // const formattedDate = format(data.createdOn, "Lo LLL yyyy");
-    // data.thumbnail = THUMBNAIL_DEFAULT;
     if (data.thumbnail==""){
         data.thumbnail = THUMBNAIL_DEFAULT;
     }
@@ -50,6 +48,7 @@ const PostMain = () => {
             <PostPreviewable
                 data={data}
                 isLive={true}
+                isDrafted={data?.draft}
             />
             {/* Add a response if neeeded */}
 

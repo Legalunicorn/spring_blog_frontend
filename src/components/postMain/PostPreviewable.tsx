@@ -16,10 +16,11 @@ import PostOptions from "./PostOptions";
 
 type props = {
     data: PostPreviewableType,
-    isLive: boolean
+    isLive: boolean,
+    isDrafted?:boolean
 }
 
-const PostPreviewable = ({ data, isLive }: props) => {
+const PostPreviewable = ({ data, isLive,isDrafted }: props) => {
     const myFetch = useFetch();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -120,6 +121,9 @@ const PostPreviewable = ({ data, isLive }: props) => {
                     </div>
 
                 </div>
+                {isDrafted &&
+                <p className="draft-tag">Drafted</p>
+                }
                 {data.thumbnail != "" &&
                     <img src={data.thumbnail} alt="" className="post-picture" />
                 }

@@ -11,6 +11,7 @@ import PostByTags from "../../pages/postByTags/PostByTags";
 import EditProfile from "../../pages/EditProfile/EditProfile";
 import CreatePostPageWrapper from "../../components/createPost/CreatePostPageWrapper";
 import EditPost from "../../pages/EditPost/EditPost";
+import UserDrafts from "../../pages/user/UserDrafts";
 
 const router = createBrowserRouter([
     {
@@ -47,12 +48,20 @@ const router = createBrowserRouter([
                 children:[
                     {
                         path:"posts/create",
-                        // element:<CreatePost/>
                         element:<CreatePostPageWrapper/>
                     },
                     {
-                        path:"edit-profile",
-                        element:<EditProfile/>
+                        path:"account",
+                        children:[
+                            {
+                                path:"edit-profile",
+                                element:<EditProfile/>
+                            },
+                            {
+                                path:"drafts",
+                                element:<UserDrafts/>
+                            }
+                        ]
                     },
                     {
                         path:"posts/:postId/edit",
@@ -68,7 +77,8 @@ const router = createBrowserRouter([
                 path:"/tags/:tagName",
                 element: <PostByTags/>
             }
-        ]
+        ],
+        errorElement: <Layout/>
     }
 
 ])

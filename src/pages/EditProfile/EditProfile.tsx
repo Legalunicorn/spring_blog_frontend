@@ -26,7 +26,6 @@ const EditProfile = () => {
             body:JSON.stringify({profilePicture:url,username:user.username})
         }),
         onSuccess: ()=>{
-            console.log("update pfp succes");
             toast.success("Profile updated successfully");
             queryClient.invalidateQueries({queryKey:["post"]});
             queryClient.invalidateQueries({queryKey:["userProfile"]});
@@ -34,7 +33,7 @@ const EditProfile = () => {
             navigate(`/users/${user.username}`);
         },
         onError: (error)=>{
-            console.log(error.message);
+            toast.error(error.message);
         }
     })
 

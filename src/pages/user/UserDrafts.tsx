@@ -3,20 +3,21 @@ import "./userProfile.scss"
 import { useFetch } from "../../helpers/hooks/useFetch";
 import { useQuery } from "@tanstack/react-query";
 import { PostSummary } from "../../helpers/types";
-import type { AuthorSummary } from "../../helpers/types";
+import type { AuthorSummary, User } from "../../helpers/types";
 import ProfileAndPosts from "./ProfileAndPosts";
 import Loader from "../../components/loader/Loader";
 import StandardError from "../../components/layouts/Error/StandardError";
+import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 
 type UserProfile = {
     user: AuthorSummary,
     posts: PostSummary[]
 }
 
-const UserProfile = () => {
+const UserDrafts = () => {
 
-    const {username} = useParams();
     const myFetch = useFetch();
+    const {user} = useAuthContext() as {user: User};
 
 
     const {
@@ -24,8 +25,8 @@ const UserProfile = () => {
         isLoading,
         isError
     } = useQuery<UserProfile>({
-        queryKey:["userProfile",username],
-        queryFn: ()=>myFetch(`/users/${username}`)
+        queryKey:["userProfile",user.username],
+        queryFn: ()=>myFetch(`/users/${user.username}/drafts`)
     })
 
     if (isLoading) return <Loader loading={isLoading}/>
@@ -35,8 +36,9 @@ const UserProfile = () => {
         <ProfileAndPosts
             user={data.user}
             posts={data.posts}
+            label="Drafts"
         />
     );
 }
  
-export default UserProfile;
+export default UserDrafts;

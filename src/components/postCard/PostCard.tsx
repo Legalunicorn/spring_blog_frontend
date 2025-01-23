@@ -31,6 +31,9 @@ const PostCard = ({ post }: PostCardProps) => {
         <article onClick={()=>navigate(`/posts/${post.id}`)} className="post-card">
 
             <div className="post-data">
+                {post.draft && post.draft==true &&
+                    <p className="draft-tag">Draft</p>
+                }
                 <section className="post-main">
                     <div className="post-author"
                         onClick={visitProfile}

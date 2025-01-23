@@ -4,7 +4,7 @@ const Footer = () => {
         <section id="footer">
             <p>
                 Created by{" "}
-                <a href="https://github.com/Legalunicorn">@LegalUnicorn</a>
+                <a target="_blank" href="https://github.com/Legalunicorn/spring_blog_frontend">@LegalUnicorn</a>
             </p>
         </section>
     );

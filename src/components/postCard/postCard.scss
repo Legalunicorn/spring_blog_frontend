@@ -1,3 +1,13 @@
+.draft-tag{
+    width: fit-content;
+    padding: 0.25rem 0.5rem;
+    border-radius:0.5rem;
+    background-color: var(--color-primary-60);
+
+    margin-bottom:1rem;
+
+}
+
 .post-card{
     display: flex;
     padding: 1.25rem;
@@ -6,6 +16,8 @@
     // max-height: 200px;
     height: fit-content;
     align-items: center;
+
+
 
 
 

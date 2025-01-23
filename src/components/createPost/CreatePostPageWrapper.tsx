@@ -36,8 +36,6 @@ const CreatePostPageWrapper = () => {
     return (
         <ModifyPost
             mutationFn={createPostMutation}
-            // postInput={postInput}
-            // setPostInput={setPostInput}
         />
      );
 }

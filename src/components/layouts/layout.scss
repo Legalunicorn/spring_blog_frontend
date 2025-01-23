@@ -87,8 +87,20 @@
 
 
 #footer{
-    // border:1px solid red;
-    // margin-top: 5rem;
+    animation: appear 2s linear;
+    font-family: Poppins,Alata,Inter,Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    display: flex;
+    justify-content: center;
+    color: var(--color-neutral-1);
+    // border: 1px solid red;
+    // margin-top: 10rem;
     padding: 1rem 1.5rem;
     width: 100%;
+
+    a{
+        color:var(--color-primary-80);
+        &:hover{
+            text-decoration: underline;
+        }
+    }
 }

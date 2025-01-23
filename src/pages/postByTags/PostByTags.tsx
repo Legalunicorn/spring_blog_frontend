@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useFetch } from "../../helpers/hooks/useFetch";
 import { PostSummary } from "../../helpers/types";
 import PostCard from "../../components/postCard/PostCard";
+import Loader from "../../components/loader/Loader";
+import StandardError from "../../components/layouts/Error/StandardError";
 
 type ReseponseType = {
     id: number,
@@ -20,7 +22,8 @@ const PostByTags = () => {
         queryFn:()=>myFetch(`/tags/${tagName}/posts`)
     })
 
-    if (isLoading || isError) return <p>ERR|LOAD</p>
+    if (isLoading) return <Loader loading={isLoading}/>
+    if (isError || data == undefined) return <StandardError/>
 
     console.log("data: ",data);
     return (
