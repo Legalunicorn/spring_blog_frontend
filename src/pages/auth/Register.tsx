@@ -1,5 +1,5 @@
 import "./auth.scss";
-import { Form, Link } from "react-router";
+import { Form, Link, useNavigate } from "react-router";
 import logo from "../../assets/images/rice-bowl-logo.svg"
 import { useState } from "react";
 import { simpleFetch } from "../../helpers/utils/simpleFetch";
@@ -16,12 +16,46 @@ type RegisterInputs = {
 
 const Register = () => {
 
-    // const myFetch = useFetch();
     const {dispatch} = useAuthContext();
+    const navigate = useNavigate()
 
     const [inputs,setInputs] = useState<RegisterInputs>({username:"",password:"",confirm_password:""});
     const [_loading,setLoading] = useState<boolean>(false);
     const [error,setError] = useState<string>("")
+
+
+
+    const handleGuest = async ()=>{
+        const username="demo";
+        const password="demo";
+        setError("");
+        setLoading(true);
+        try{
+            const response = await simpleFetch("/auth/login",{
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                method:"POST",
+                body: JSON.stringify({
+                    username,
+                    password
+                })
+            })
+            const data = await response.json(); 
+            setLoading(false);
+            if (response.ok){
+                dispatch({type:"LOGIN",payload:data})
+                localStorage.setItem("user",JSON.stringify(data));
+                navigate("/home")
+            }else{
+                setError(data.message);
+                console.log(data.message);
+            }
+        } catch(err:any){
+            setLoading(false);
+            setError(err.message)
+        }
+    }    
 
 
 
@@ -133,6 +167,9 @@ const Register = () => {
                     />
 
                     <button className="auth-submit" type="submit">Sign up</button>
+                    <button className="guest-login" type="button"
+                        onClick={handleGuest}
+                    >Guest</button>                    
                     {error && 
                     <ErrorBox
                         message={error}

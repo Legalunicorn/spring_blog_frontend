@@ -30,7 +30,7 @@ const CreatePostBody = ({ setPostInput, postInput,setEditMode }:createPostProps)
                     id=""
                     onChange={handleChangeBody}
                     value={postInput.body}
-                    placeholder="Write your story.."
+                    placeholder="Write your story with Markdown..."
                 >
                  </textarea> 
                 <div className="direction-buttons">

@@ -6,7 +6,6 @@ import { simpleFetch } from "../../helpers/utils/simpleFetch";
 import { useAuthContext } from "../../helpers/hooks/useAuthContext";
 import ErrorBox from "../../components/ErrorBox/ErrorBox";
 
-
 type LoginInputs = {
     username:string,
     password:string,
@@ -22,6 +21,38 @@ const Login = () => {
     const [inputs,setInputs] = useState<LoginInputs>({username:"",password:""});
     const [_loading,setLoading] = useState<boolean>(false);
     const [error,setError] = useState<string>("")
+
+    const handleGuest = async ()=>{
+        const username="demo";
+        const password="demo";
+        setError("");
+        setLoading(true);
+        try{
+            const response = await simpleFetch("/auth/login",{
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                method:"POST",
+                body: JSON.stringify({
+                    username,
+                    password
+                })
+            })
+            const data = await response.json(); 
+            setLoading(false);
+            if (response.ok){
+                dispatch({type:"LOGIN",payload:data})
+                localStorage.setItem("user",JSON.stringify(data));
+                navigate("/home")
+            }else{
+                setError(data.message);
+                console.log(data.message);
+            }
+        } catch(err:any){
+            setLoading(false);
+            setError(err.message)
+        }
+    }    
 
 
 
@@ -108,6 +139,9 @@ const Login = () => {
 
 
                     <button className="auth-submit" type="submit">Login</button>
+                    <button className="guest-login" type="button"
+                        onClick={handleGuest}
+                    >Guest</button>
                     {error && 
                     <ErrorBox
                         message={error}
