@@ -3,7 +3,7 @@ import type { TagSummary } from "../../helpers/types";
 import { useQuery } from "@tanstack/react-query";
 import { useFetch } from "../../helpers/hooks/useFetch";
 import { useNavigate } from "react-router";
-import StandardError from "../../components/layouts/Error/StandardError";
+// import StandardError from "../../components/layouts/Error/StandardError";
 import Loader from "../../components/loader/Loader";
 
 const HomeTags = () => {
@@ -15,7 +15,7 @@ const HomeTags = () => {
         queryFn: () => myFetch("/tags")
     })
     if (isLoading) return <Loader loading={isLoading}/>
-    if (isError || data == undefined) return <StandardError/>
+    if (isError || data == undefined) return <>No tags found</>
     return (
         <section className="home-tags">
             {data && data.map(tag => (
