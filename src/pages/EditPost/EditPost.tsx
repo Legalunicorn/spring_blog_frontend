@@ -46,34 +46,12 @@ const EditPost = () => {
     if (isLoading) return <p>Loading...</p>;
     if (isError || !post) return <p>Error loading post</p>;
 
-    
-    // const post = data as 
-    // if (user.username!=post.author.username){
-    //     navigate("/home")
-    // }
-    // const [postInput, setPostInput] = useState<PostPreviewableType>({
-    //     title: post?post.title:"",
-    //     thumbnail:post? post.thumbnail:"",
-    //     body: post?post.body:"",
-    //     tags: post?post?.tags:[],
-    //     like_count:post?post.like_count:0,
-    //     author:{
-    //         username: user? user.username: "demo",
-    //         profilePicture: user && user.profilePicture? user.profilePicture: PFP_DEFAULT
-    //     },
-    //     createdOn: post?post.createdOn:new Date().toISOString()
-    // })
-
-
-    // if (isLoading || isError || data==null) return <p> Loading | Error </p>
+ 
 
     return (
         <ModifyPost
             mutationFn={EditPostMutation}
             post={post}
-                
-            // postInput={postInput}
-            // setPostInput={setPostInput}
         />
     );
 }

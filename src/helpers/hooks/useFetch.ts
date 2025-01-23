@@ -20,7 +20,6 @@ export function useFetch(){
             headers["Content-Type"]="application/json";
         }
         if (user){
-            console.log("there is a user");
             headers.Authorization = `Bearer ${user.token}`
         }
  

@@ -60,8 +60,6 @@ const CreatePostMain = ({ setPostInput, postInput, setEditMode }: createPostProp
     }
 
     const deleteTag = (tag: string) => {
-        console.log("DELETING: ", tag);
-        // deletes the value from PostInput.tags
         setPostInput(prev => ({
             ...prev,
             tags: prev.tags.filter(t => t.name !== tag)

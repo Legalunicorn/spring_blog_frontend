@@ -25,7 +25,6 @@ const PostByTags = () => {
     if (isLoading) return <Loader loading={isLoading}/>
     if (isError || data == undefined) return <StandardError/>
 
-    console.log("data: ",data);
     return (
         <div className="post-by-tags-page page">
             <section className="page-header">

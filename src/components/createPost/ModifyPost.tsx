@@ -34,7 +34,7 @@ const ModifyPost = ({
             username: user? user.username: "demo",
             profilePicture: user && user.profilePicture? user.profilePicture: PFP_DEFAULT
         },
-        createdOn: post?post.createdOn:new Date().toISOString()
+        createdOn: post && post.createdOn?post.createdOn:new Date().toISOString()
     })
 
     const [editMode, setEditMode] = useState<InputMode>("body");
