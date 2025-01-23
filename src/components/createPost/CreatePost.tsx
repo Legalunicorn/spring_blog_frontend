@@ -1,6 +1,6 @@
-import { Form, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 import "./createPost.scss"
-import { useState,useRef } from "react";
+import { useState } from "react";
 import CreatePostMain from "./CreatePostMain";
 import ViewOptions from "./ViewOption";
 import CreatePostBody from "./CreatePostBody";
@@ -13,26 +13,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 export type InputMode = "main" | "body" | "preview"
 
-
-//How do i abstract this out? 
-/*
-I cant use "createPostMutation"
-
-> abstract it out ?
-
-
-issue 2: postInput default? 
-
-
-takes in : post summary optional 
-
-props 
-post: postSummary?
-*/
-
 const CreatePost = () => {
     const {user}= useAuthContext() as {user:User}; //Auth validation
-    // const {user} = useAuthContext();
 
 
     const navigate = useNavigate();
@@ -54,7 +36,7 @@ const CreatePost = () => {
 
     const [editMode, setEditMode] = useState<InputMode>("body");
 
-    const handleSubmit = async(e:React.FormEvent<HTMLButtonElement>,draft:boolean)=>{
+    const handleSubmit = async(_e:React.FormEvent<HTMLButtonElement>,draft:boolean)=>{
         const data:any = postInput
         //Not needed for form submission
         delete data.author;

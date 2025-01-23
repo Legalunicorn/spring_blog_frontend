@@ -1,6 +1,6 @@
 import "./createPost.scss"
 // import type { InputMode } from "./CreatePost";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import type { InputMode } from "./CreatePost";
 import { Form } from "react-router";
 import { Icon } from "@iconify/react/dist/iconify.js";

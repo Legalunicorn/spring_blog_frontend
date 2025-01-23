@@ -6,15 +6,8 @@ import { Link, useNavigate } from "react-router";
 import AccountOptions from "./AccountOptions";
 const Header = () => {
 
-    const {user,dispatch} = useAuthContext();
+    const {user} = useAuthContext();
     const navigate = useNavigate();
-
-    const handleLogout=()=>{
-        dispatch({type:"LOGOUT"});
-        localStorage.removeItem("user")
-    }
-
-
 
     return (
         <section id="header">

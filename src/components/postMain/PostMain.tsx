@@ -1,11 +1,9 @@
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import "./postMain.scss"
 import { useQuery } from "@tanstack/react-query";
 import { PostType } from "../../helpers/types";
 import { useFetch } from "../../helpers/hooks/useFetch";
-// import { format } from "date-fns";
 import Comment from "../Comment/Comment";
-// import { Icon } from "@iconify/react/dist/iconify.js";
 import PostPreviewable from "./PostPreviewable";
 import {THUMBNAIL_DEFAULT } from "../../helpers/constants";
 import CreateComment from "./CreateComment";
@@ -19,18 +17,15 @@ import Loader from "../loader/Loader";
 const PostMain = () => {
     var { postId } = useParams();
     const myFetch = useFetch();
-    const navigate = useNavigate();
     const {user} = useAuthContext();
     const {
         data,
         isLoading,
         isError,
-        error
     } = useQuery<PostType>({
         queryKey: ["post", Number(postId)],
         queryFn: () => myFetch(`/posts/${postId}`)
     })
-    // console.log(data);
 
 
     //TODO handle the loading properlty

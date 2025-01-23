@@ -1,4 +1,3 @@
-import { useParams } from "react-router";
 import "./userProfile.scss"
 import { useFetch } from "../../helpers/hooks/useFetch";
 import { useQuery } from "@tanstack/react-query";

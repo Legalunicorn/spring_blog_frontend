@@ -20,7 +20,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const [inputs,setInputs] = useState<LoginInputs>({username:"",password:""});
-    const [loading,setLoading] = useState<boolean>(false);
+    const [_loading,setLoading] = useState<boolean>(false);
     const [error,setError] = useState<string>("")
 
 

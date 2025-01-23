@@ -15,7 +15,7 @@ const Loader = ({
     size = 40
 }: LoaderProps) => {
 
-    if (loaderType = "hash")
+    if (loaderType === "hash")
         return (
             <>
                 <HashLoader
@@ -28,7 +28,7 @@ const Loader = ({
             </>
         )
 
-    if (loaderType = "dot")
+    if (loaderType  ==="dot")
         return (
             <>
                 <DotLoader
@@ -42,7 +42,7 @@ const Loader = ({
         )
 
 
-    if (loaderType = "rotate")
+    if (loaderType === "rotate")
         return (
             <>
                 <RotateLoader

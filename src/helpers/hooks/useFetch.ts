@@ -24,11 +24,6 @@ export function useFetch(){
             headers.Authorization = `Bearer ${user.token}`
         }
  
-        const param = {
-            mode:"cors",
-            method:"GET",
-            ...options
-        }
 
         const response = await fetch(VITE_API_URL+url,{
             headers,
@@ -49,10 +44,15 @@ export function useFetch(){
 
         if (response.ok){
             return data
-        } else if (response.status==401){
+        
+        } 
+        else if (data.code=="JWT_ERROR"){
+            
+            navigate("/auth/login")
+        }
+        else if (response.status==401){
             navigate("/auth/login");
-            //Should I throw an error? no idea what it does //TODO 
-            throw new Error("Authentication Invalid. Please Login/Register.")
+            // throw new Error("Authentication Invalid. Please Login/Register.")
         } else {
             console.log(`$ERR code: ${response.status}: ${data}`);
             throw new Error(data.message || 'Failed to fetch data');
